@@ -14,4 +14,8 @@ public class DukeException {
     public static void invalidIndex() {
         InOut.output("☹ OOPS!!! The list index of the task entered is invalid.");
     }
+
+    public static void fileNotFound() {
+        InOut.output("☹ OOPS!!! There was an error in opening the file.");
+    }
 }

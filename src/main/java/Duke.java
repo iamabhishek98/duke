@@ -4,8 +4,10 @@ public class Duke {
     private static List list = new List();
 
     public static void main(String[] args) {
+        list = FileOperations.readFile(list);
         startup();
         process();
+        FileOperations.writeFile(list);
     }
 
     public static void startup() {
@@ -33,6 +35,7 @@ public class Duke {
             else {
                 DukeException.notRecognized();
             }
+            FileOperations.writeFile(list);
         }
         scanner.close();
     }

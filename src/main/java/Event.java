@@ -6,6 +6,11 @@ public class Event extends Task {
         this.date = date;
     }
 
+    public Event(String description, boolean isDone, String date) {
+        super(description, isDone);
+        this.date = date;
+    }
+
     @Override
     public String getItem() {
         return "[E]"+super.getItem()+" (at: "+this.date+")";

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class List {
     protected final String SPACE = "\t    ";
-    protected ArrayList<Task> list = new ArrayList<>();
+    public ArrayList<Task> list = new ArrayList<>();
 
     public void addList(String input) {
         Task x = new Task(input);
@@ -44,6 +44,11 @@ public class List {
         }
     }
 
+    public void markToDo(String description, boolean isDone) {
+        Task x = new ToDo(description,isDone);
+        list.add(x);
+    }
+
     public void markDeadline(String input) {
         String newInput = input.substring(9);
         if (newInput.isEmpty()) DukeException.taskEmpty("deadline");
@@ -57,6 +62,11 @@ public class List {
                 DukeException.taskWrongFormat("deadline");
             }
         }
+    }
+
+    public void markDeadline(String description, boolean isDone, String date) {
+        Task x = new Deadline(description,isDone,date);
+        list.add(x);
     }
 
     public void markEvent(String input) {
@@ -74,6 +84,11 @@ public class List {
         }
     }
 
+    public void markEvent(String description, boolean isDone, String date) {
+        Task x = new Event(description,isDone,date);
+        list.add(x);
+    }
+
     public void printList() { //inout
         if (list.isEmpty()) {
             InOut.output("There are no tasks in the list."); return;
@@ -87,9 +102,22 @@ public class List {
         System.out.println(InOut.HORIZONTAL_LINE);
     }
 
+    public String writeListToFile() {
+        String output = "";
+        for (int i = 0 ; i < list.size(); i++) {
+            String task = list.get(i).getItem().substring(1,2);
+            output += (task+";"+list.get(i).isDone+";"+list.get(i).description);
+            if (task.equals("D") || task.equals("E")) {
+                String[] temp = list.get(i).getItem().split(": ");
+                output += ";"+temp[1].substring(0,temp[1].length()-1);
+            }
+            output+="\n";
+        }
+        return output;
+    }
+
     protected void acknowledgment() {
         String numberOfTasks = (list.size()!=1) ? "tasks":"task";
         InOut.output("Got it. I've added this task:\n"+SPACE+list.get(list.size()-1).getItem()+"\n\t Now you have "+list.size()+" "+numberOfTasks+" in the list.");
     }
-
 }
