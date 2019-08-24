@@ -9,7 +9,7 @@ public class Event extends Task {
 
     public Event(String description, boolean isDone, String date) {
         super(description, isDone);
-        DateAndTime tempDate = new DateAndTime(date);
+        DateAndTime tempDate = new DateAndTime(date, 0);
         this.date = tempDate;
     }
 

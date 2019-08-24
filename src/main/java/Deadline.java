@@ -1,5 +1,3 @@
-import java.util.Date;
-
 public class Deadline extends Task {
     protected DateAndTime date;
 
@@ -11,7 +9,7 @@ public class Deadline extends Task {
 
     public Deadline(String description, boolean isDone, String date) {
         super(description, isDone);
-        DateAndTime tempDate = new DateAndTime(date);
+        DateAndTime tempDate = new DateAndTime(date,0);
         this.date = tempDate;
     }
 

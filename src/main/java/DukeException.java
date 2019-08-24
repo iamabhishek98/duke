@@ -15,6 +15,10 @@ public class DukeException {
         InOut.output("☹ OOPS!!! The list index of the task entered is invalid.");
     }
 
+    public static void invalidDateAndTime() {
+        InOut.output("☹ OOPS!!! The date and time entered is invalid.");
+    }
+
     public static void fileNotFound() {
         InOut.output("☹ OOPS!!! There was an error in opening the file.");
     }

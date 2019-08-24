@@ -7,10 +7,24 @@ public class DateAndTime {
     public DateAndTime(String dateandtime) {
         String date = dateandtime.split(" ")[0];
         String time = dateandtime.split(" ")[1];
-        Day = setDay(date);
-        Month = setMonth(date);
-        Year = setYear(date);
-        Time = setTime(time);
+        try {
+            Day = setDay(date);
+            Month = setMonth(date);
+            Year = setYear(date);
+            Time = setTime(time);
+        } catch(Exception e) {
+            DukeException.invalidDateAndTime();
+        }
+    }
+    public DateAndTime(String dateandtime, int temp) {
+        try {
+            Day = dateandtime.split(" ")[0];
+            Month = dateandtime.split(" ")[1];
+            Year = dateandtime.split(" ")[2];
+            Time = dateandtime.split(" ")[3];
+        } catch(Exception e) {
+            DukeException.invalidDateAndTime();
+        }
     }
 
     public static String getDateAndTime() {
