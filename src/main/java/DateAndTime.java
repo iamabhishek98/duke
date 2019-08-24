@@ -19,16 +19,16 @@ public class DateAndTime {
     public DateAndTime(String dateandtime, int temp) {
         try {
             Day = dateandtime.split(" ")[0];
-            Month = dateandtime.split(" ")[1];
-            Year = dateandtime.split(" ")[2];
-            Time = dateandtime.split(" ")[3];
+            Month = dateandtime.split(" ")[2];
+            Year = dateandtime.split(" ")[3].substring(0,dateandtime.split(" ")[3].length()-1);
+            Time = dateandtime.split(" ")[4];
         } catch(Exception e) {
             DukeException.invalidDateAndTime();
         }
     }
 
     public static String getDateAndTime() {
-        return Day+" "+Month+" "+Year+" "+Time;
+        return Day+" of "+Month+" "+Year+", "+Time;
     }
 
     public static String setDay(String x) {
