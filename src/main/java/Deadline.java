@@ -1,18 +1,22 @@
+import java.util.Date;
+
 public class Deadline extends Task {
-    protected String date;
+    protected DateAndTime date;
 
     public Deadline(String description, String date) {
         super(description);
-        this.date = date;
+        DateAndTime tempDate = new DateAndTime(date);
+        this.date = tempDate;
     }
 
     public Deadline(String description, boolean isDone, String date) {
         super(description, isDone);
-        this.date = date;
+        DateAndTime tempDate = new DateAndTime(date);
+        this.date = tempDate;
     }
 
     @Override
     public String getItem() {
-        return "[D]"+super.getItem()+" (by: "+this.date+")";
+        return "[D]"+super.getItem()+" (by: "+date.getDateAndTime()+")";
     }
 }

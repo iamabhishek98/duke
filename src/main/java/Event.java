@@ -1,18 +1,20 @@
 public class Event extends Task {
-    protected String date;
+    protected DateAndTime date;
 
     public Event(String description, String date) {
         super(description);
-        this.date = date;
+        DateAndTime tempDate = new DateAndTime(date);
+        this.date = tempDate;
     }
 
     public Event(String description, boolean isDone, String date) {
         super(description, isDone);
-        this.date = date;
+        DateAndTime tempDate = new DateAndTime(date);
+        this.date = tempDate;
     }
 
     @Override
     public String getItem() {
-        return "[E]"+super.getItem()+" (at: "+this.date+")";
+        return "[E]"+super.getItem()+" (at: "+date.getDateAndTime()+")";
     }
 }
