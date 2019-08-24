@@ -21,6 +21,19 @@ public class List {
         }
     }
 
+    public void markDelete(String input) {
+        String[] newInput = input.split(" ");
+        try {
+            int i = Integer.parseInt(newInput[1]);
+            String numberOfTasks = ((list.size()-1)!=1) ? "tasks":"task";
+            int count = list.size()-1;
+            InOut.output("Noted. I've removed this task:\n" + SPACE + list.get(i - 1).getItem()+"\n\t Now you have "+count+" "+numberOfTasks+" in the list.");
+            list.remove(i-1);
+        } catch(Exception e) {
+            DukeException.invalidIndex();
+        }
+    }
+
     public void markToDo(String input) {
         String newInput = input.substring(5);
         if (newInput.isEmpty()) DukeException.taskEmpty("todo");
@@ -75,7 +88,7 @@ public class List {
     }
 
     protected void acknowledgment() {
-        String numberOfTasks = (list.size()>1) ? "tasks":"task";
+        String numberOfTasks = (list.size()!=1) ? "tasks":"task";
         InOut.output("Got it. I've added this task:\n"+SPACE+list.get(list.size()-1).getItem()+"\n\t Now you have "+list.size()+" "+numberOfTasks+" in the list.");
     }
 

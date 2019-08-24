@@ -26,6 +26,7 @@ public class Duke {
             if (bye(input)) break;
             else if (input.equals("list")) list.printList();
             else if (input.length()>=5 && input.substring(0,5).equals("done ")) list.markDone(input);
+            else if (input.length()>=7 && input.substring(0,7).equals("delete ")) list.markDelete(input);
             else if (input.length()>=5 && input.substring(0,5).equals("todo ")) list.markToDo(input);
             else if (input.length()>=9 && input.substring(0,9).equals("deadline ")) list.markDeadline(input);
             else if (input.length()>=6 && input.substring(0,6).equals("event ")) list.markEvent(input);
