@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class List {
-    protected final String HORIZONTAL_LINE = "\t____________________________________________________________";
     protected final String SPACE = "\t    ";
     protected ArrayList<Task> list = new ArrayList<>();
 
@@ -48,13 +47,13 @@ public class List {
         if (list.isEmpty()) {
             InOut.output("There are no tasks in the list."); return;
         }
-        System.out.println(HORIZONTAL_LINE);
+        System.out.println(InOut.HORIZONTAL_LINE);
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0 ; i < list.size(); i++) {
             int count = i+1;
             System.out.println("\t "+count+". "+list.get(i).getItem());
         }
-        System.out.println(HORIZONTAL_LINE);
+        System.out.println(InOut.HORIZONTAL_LINE);
     }
 
     protected void acknowledgment() {

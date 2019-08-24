@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Duke {
-    private static final String HORIZONTAL_LINE = "\t____________________________________________________________";
     private static List list = new List();
 
     public static void main(String[] args) {
