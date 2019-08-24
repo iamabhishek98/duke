@@ -1,42 +1,65 @@
 import java.util.ArrayList;
 
 public class List {
-    private final String HORIZONTAL_LINE = "\t____________________________________________________________";
-    private ArrayList<Task> list = new ArrayList<>();
+    protected final String HORIZONTAL_LINE = "\t____________________________________________________________";
+    protected final String SPACE = "\t    ";
+    protected ArrayList<Task> list = new ArrayList<>();
 
     public void addList(String input) {
         Task x = new Task(input);
         list.add(x);
-        output("added: "+input);
+        InOut.output("added: "+input);
     }
 
     public void markDone(String input) {
-        String[] inputWords = input.split(" ");
-        int i = Integer.parseInt(inputWords[1]);
+        String[] newInput = input.split(" ");
+        int i = Integer.parseInt(newInput[1]);
         if (i>list.size()||i<=0) {
-            output("Invalid entry."); return;
+            InOut.output("Invalid entry."); return;
         }
-        String description = list.get(i - 1).description;
         list.get(i - 1).isDone = true;
-        output("Nice! I've marked this task as done:\n"+"\t    [" + "\u2713" + "] " + description);
+        InOut.output("Nice! I've marked this task as done:\n"+SPACE+list.get(i-1).getItem());
+    }
+
+    public void markToDo(String input) {
+        String newInput = input.substring(5);
+        Task x = new ToDo(newInput);
+        list.add(x);
+        acknowledgment();
+    }
+
+    public void markDeadline(String input) {
+        String newInput = input.substring(9);
+        String[] finalInput = newInput.split(" /by ");
+        Task x = new Deadline(finalInput[0],finalInput[1]);
+        list.add(x);
+        acknowledgment();
+    }
+
+    public void markEvent(String input) {
+        String newInput = input.substring(6);
+        String[] finalInput = newInput.split(" /at ");
+        Task x = new Event(finalInput[0],finalInput[1]);
+        list.add(x);
+        acknowledgment();
     }
 
     public void printList() { //inout
         if (list.isEmpty()) {
-            output("There are no tasks in the list."); return;
+            InOut.output("There are no tasks in the list."); return;
         }
         System.out.println(HORIZONTAL_LINE);
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0 ; i < list.size(); i++) {
             int count = i+1;
-            System.out.println("\t "+count+". ["+list.get(i).getStatusIcon()+"] "+list.get(i).description);
+            System.out.println("\t "+count+". "+list.get(i).getItem());
         }
         System.out.println(HORIZONTAL_LINE);
     }
 
-    private void output(String input) { //inout
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println("\t "+input);
-        System.out.println(HORIZONTAL_LINE);
+    protected void acknowledgment() {
+        String numberOfTasks = (list.size()>1) ? "tasks":"task";
+        InOut.output("Got it. I've added this task:\n"+SPACE+list.get(list.size()-1).getItem()+"\n\t Now you have "+list.size()+" "+numberOfTasks+" in the list.");
     }
+
 }
