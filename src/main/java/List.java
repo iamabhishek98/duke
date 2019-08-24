@@ -12,35 +12,53 @@ public class List {
 
     public void markDone(String input) {
         String[] newInput = input.split(" ");
-        int i = Integer.parseInt(newInput[1]);
-        if (i>list.size()||i<=0) {
-            InOut.output("Invalid entry."); return;
+        try {
+            int i = Integer.parseInt(newInput[1]);
+            list.get(i - 1).isDone = true;
+            InOut.output("Nice! I've marked this task as done:\n" + SPACE + list.get(i - 1).getItem());
+        } catch(Exception e) {
+            DukeException.invalidIndex();
         }
-        list.get(i - 1).isDone = true;
-        InOut.output("Nice! I've marked this task as done:\n"+SPACE+list.get(i-1).getItem());
     }
 
     public void markToDo(String input) {
         String newInput = input.substring(5);
-        Task x = new ToDo(newInput);
-        list.add(x);
-        acknowledgment();
+        if (newInput.isEmpty()) DukeException.taskEmpty("todo");
+        else {
+            Task x = new ToDo(newInput);
+            list.add(x);
+            acknowledgment();
+        }
     }
 
     public void markDeadline(String input) {
         String newInput = input.substring(9);
-        String[] finalInput = newInput.split(" /by ");
-        Task x = new Deadline(finalInput[0],finalInput[1]);
-        list.add(x);
-        acknowledgment();
+        if (newInput.isEmpty()) DukeException.taskEmpty("deadline");
+        else {
+            try {
+                String[] finalInput = newInput.split(" /by ");
+                Task x = new Deadline(finalInput[0], finalInput[1]);
+                list.add(x);
+                acknowledgment();
+            } catch(Exception e) {
+                DukeException.taskWrongFormat("deadline");
+            }
+        }
     }
 
     public void markEvent(String input) {
         String newInput = input.substring(6);
-        String[] finalInput = newInput.split(" /at ");
-        Task x = new Event(finalInput[0],finalInput[1]);
-        list.add(x);
-        acknowledgment();
+        if (newInput.isEmpty()) DukeException.taskEmpty("event");
+        else {
+            try {
+                String[] finalInput = newInput.split(" /at ");
+                Task x = new Event(finalInput[0], finalInput[1]);
+                list.add(x);
+                acknowledgment();
+            } catch(Exception e) {
+                DukeException.taskWrongFormat("event");
+            }
+        }
     }
 
     public void printList() { //inout

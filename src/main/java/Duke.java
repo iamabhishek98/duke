@@ -30,7 +30,7 @@ public class Duke {
             else if (input.length()>=9 && input.substring(0,9).equals("deadline ")) list.markDeadline(input);
             else if (input.length()>=6 && input.substring(0,6).equals("event ")) list.markEvent(input);
             else {
-                list.addList(input);
+                DukeException.notRecognized();
             }
         }
         scanner.close();
