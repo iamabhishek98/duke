@@ -1,9 +1,8 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static final String HORIZONTAL_LINE = "\t____________________________________________________________";
-    public static ArrayList<String> list = new ArrayList<String>();
+    private static final String HORIZONTAL_LINE = "\t____________________________________________________________";
+    private static List list = new List();
 
     public static void main(String[] args) {
         startup();
@@ -11,27 +10,14 @@ public class Duke {
     }
 
     public static void startup() { //inout
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        output("Hello! I'm Duke\n\tWhat can I do for you?");
-    }
-
-    public static void output(String input) { //inout
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println("\t"+input);
-        System.out.println(HORIZONTAL_LINE);
-    }
-
-    public static void output() { //inout
-        System.out.println(HORIZONTAL_LINE);
-        for (int i = 0 ; i < list.size(); i++) {
-            int count = i+1;
-            System.out.println("\t"+count+". "+list.get(i));
-        }
-        System.out.println(HORIZONTAL_LINE);
+        String tab = "\t\t\t\t\t\t";
+        String logo = tab+" ____        _        \n"
+                +tab+ "|  _ \\ _   _| | _____ \n"
+                +tab+ "| | | | | | | |/ / _ \\\n"
+                +tab+ "| |_| | |_| |   <  __/\n"
+                +tab+"|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println(logo);
+        output("Hello! I'm Duke\n\t What can I do for you?");
     }
 
     public static void process() {
@@ -39,25 +25,13 @@ public class Duke {
         while (true) {
             String input = scanner.nextLine();
             if (bye(input)) break;
-            else if (list(input)) continue;
+            else if (input.equals("list")) list.printList();
+            else if (input.length()>=4 && input.substring(0,4).equals("done")) list.markDone(input);
             else {
-                add(input);
+                list.addList(input);
             }
         }
         scanner.close();
-    }
-
-    public static void add(String input) {
-        list.add(input);
-        output("added: "+input);
-    }
-
-    public static boolean list(String input) {
-        if (input.equals("list")) {
-            output();
-            return true;
-        }
-        return false;
     }
 
     public static boolean bye(String input) { //userdefined
@@ -68,4 +42,9 @@ public class Duke {
         return false;
     }
 
+    private static void output(String input) { //inout
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println("\t "+input);
+        System.out.println(HORIZONTAL_LINE);
+    }
 }
