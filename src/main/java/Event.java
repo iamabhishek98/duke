@@ -14,11 +14,7 @@ public class Event extends Task {
     public Event(String description, boolean isDone, String date) {
         super(description, isDone);
         DateAndTime tempDate = new DateAndTime(date, 0);
-        if (tempDate.dateAndTimeFormatChecker(date)) {
-            this.date = tempDate;
-        } else {
-            super.format = false;
-        }
+        this.date = tempDate;
     }
 
     @Override

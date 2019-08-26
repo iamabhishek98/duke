@@ -68,9 +68,7 @@ public class List {
 
     public void markDeadline(String description, boolean isDone, String date) {
         Task x = new Deadline(description,isDone,date);
-        if (x.format) {
-            list.add(x);
-        }
+        list.add(x);
     }
 
     public void markEvent(String input) {
@@ -92,12 +90,10 @@ public class List {
 
     public void markEvent(String description, boolean isDone, String date) {
         Task x = new Event(description,isDone,date);
-        if (x.format) {
-            list.add(x);
-        }
+        list.add(x);
     }
 
-    public void printList() { //inout
+    public void printList() {
         if (list.isEmpty()) {
             InOut.output("There are no tasks in the list."); return;
         }
