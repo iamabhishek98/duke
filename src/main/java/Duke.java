@@ -10,7 +10,7 @@ public class Duke {
     }
 
     public static void startup() {
-        String tab = "\t\t\t\t\t\t";
+        String tab = "\t\t\t\t\t\t ";
         String logo = tab+" ____        _        \n"
                 +tab+ "|  _ \\ _   _| | _____ \n"
                 +tab+ "| | | | | | | |/ / _ \\\n"
@@ -26,14 +26,50 @@ public class Duke {
             String input = scanner.nextLine();
             if (bye(input)) break;
             else if (input.equals("list")) listOfTasks.printList();
-            else if (input.length()>=5 && input.substring(0,5).equals("done ")) listOfTasks.markDone(input);
-            else if (input.length()>=7 && input.substring(0,7).equals("delete ")) listOfTasks.markDelete(input);
-            else if (input.length()>=5 && input.substring(0,5).equals("todo ")) listOfTasks.markToDo(input);
-            else if (input.length()>=9 && input.substring(0,9).equals("deadline ")) listOfTasks.markDeadline(input);
-            else if (input.length()>=6 && input.substring(0,6).equals("event ")) listOfTasks.markEvent(input);
-            else if (input.length()>=5 && input.substring(0,5).equals("find ")) listOfTasks.printMatchingTasks(input);
+            else if (input.length()>=5 && input.substring(0,5).equals("done ")) {
+                try {
+                    listOfTasks.markDone(input);
+                } catch (DukeException e) {
+                    InOut.output(e.getMessage());
+                }
+            }
+            else if (input.length()>=7 && input.substring(0,7).equals("delete ")) {
+                try {
+                    listOfTasks.markDelete(input);
+                } catch (DukeException e) {
+                    InOut.output(e.getMessage());
+                }
+            }
+            else if (input.length()>=5 && input.substring(0,5).equals("todo ")) {
+                try {
+                    listOfTasks.markToDo(input);
+                } catch (DukeException e) {
+                    InOut.output(e.getMessage());
+                }
+            }
+            else if (input.length()>=9 && input.substring(0,9).equals("deadline ")) {
+                try {
+                    listOfTasks.markDeadline(input);
+                } catch (DukeException e) {
+                    InOut.output(e.getMessage());
+                }
+            }
+            else if (input.length()>=6 && input.substring(0,6).equals("event ")) {
+                try {
+                    listOfTasks.markEvent(input);
+                } catch (DukeException e) {
+                    InOut.output(e.getMessage());
+                }
+            }
+            else if (input.length()>=5 && input.substring(0,5).equals("find ")) {
+                try {
+                    listOfTasks.printMatchingTasks(input);
+                } catch (DukeException e) {
+                    InOut.output(e.getMessage());
+                }
+            }
             else {
-                DukeException.notRecognized();
+                InOut.output(ErrorMessages.notRecognized());
             }
             FileOperations.writeFile(listOfTasks);
         }

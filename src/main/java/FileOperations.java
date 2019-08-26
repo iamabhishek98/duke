@@ -23,7 +23,7 @@ public class FileOperations {
             }
             scanner.close();
         } catch (Exception e) {
-            DukeException.fileNotFound();
+            ErrorMessages.fileNotFound();
         }
         return list;
     }
@@ -34,7 +34,7 @@ public class FileOperations {
             writer.print(list.writeListToFile());
             writer.close();
         } catch (Exception e) {
-            DukeException.fileNotFound();
+            ErrorMessages.fileNotFound();
         }
     }
 }
