@@ -3,7 +3,8 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class FileOperations {
-    public static List readFile(List list) {
+    public static List readFile() {
+        List list = new List();
         File file = new File("./src/main/data/duke.txt");
         try {
             Scanner scanner = new Scanner(file);

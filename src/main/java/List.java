@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class List {
     protected final String SPACE = "\t    ";
-    public ArrayList<Task> listOfTasks = new ArrayList<>();
+    protected ArrayList<Task> listOfTasks = new ArrayList<>();
 
     public void addList(String input) {
         Task x = new Task(input);

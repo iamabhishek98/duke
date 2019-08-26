@@ -1,13 +1,12 @@
 import java.util.Scanner;
 
 public class Duke {
-    private static List list = new List();
+    private static List listOfTasks = new List();
 
     public static void main(String[] args) {
-        list = FileOperations.readFile(list);
+        listOfTasks = FileOperations.readFile();
         startup();
         process();
-        FileOperations.writeFile(list);
     }
 
     public static void startup() {
@@ -26,18 +25,19 @@ public class Duke {
         while (true) {
             String input = scanner.nextLine();
             if (bye(input)) break;
-            else if (input.equals("list")) list.printList();
-            else if (input.length()>=5 && input.substring(0,5).equals("done ")) list.markDone(input);
-            else if (input.length()>=7 && input.substring(0,7).equals("delete ")) list.markDelete(input);
-            else if (input.length()>=5 && input.substring(0,5).equals("todo ")) list.markToDo(input);
-            else if (input.length()>=9 && input.substring(0,9).equals("deadline ")) list.markDeadline(input);
-            else if (input.length()>=6 && input.substring(0,6).equals("event ")) list.markEvent(input);
-            else if (input.length()>=5 && input.substring(0,5).equals("find ")) list.printMatchingTasks(input);
+            else if (input.equals("list")) listOfTasks.printList();
+            else if (input.length()>=5 && input.substring(0,5).equals("done ")) listOfTasks.markDone(input);
+            else if (input.length()>=7 && input.substring(0,7).equals("delete ")) listOfTasks.markDelete(input);
+            else if (input.length()>=5 && input.substring(0,5).equals("todo ")) listOfTasks.markToDo(input);
+            else if (input.length()>=9 && input.substring(0,9).equals("deadline ")) listOfTasks.markDeadline(input);
+            else if (input.length()>=6 && input.substring(0,6).equals("event ")) listOfTasks.markEvent(input);
+            else if (input.length()>=5 && input.substring(0,5).equals("find ")) listOfTasks.printMatchingTasks(input);
             else {
                 DukeException.notRecognized();
             }
-            FileOperations.writeFile(list);
+            FileOperations.writeFile(listOfTasks);
         }
+        FileOperations.writeFile(listOfTasks);
         scanner.close();
     }
 
