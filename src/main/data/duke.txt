@@ -1,4 +1,6 @@
-T;true;love this project
-E;true;say hi;31st of August 2019, 11:00pm
-D;false;cs assignment;31st of August 2019, 11:59pm
-E;false;return book;3rd of April 2019, 0:43am
+T | 1 | love this project
+E | 1 | say hi | 31st of August 2019, 11:00pm
+D | 0 | cs assignment | 31st of August 2019, 11:59pm
+E | 0 | return book | 3rd of April 2019, 0:43am
+T | 0 | hello
+D | 0 | watch money heist | 28th of August 2019, 11:59am

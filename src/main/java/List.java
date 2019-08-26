@@ -136,10 +136,10 @@ public class List {
         String output = "";
         for (int i = 0 ; i < listOfTasks.size(); i++) {
             String task = listOfTasks.get(i).getItem().substring(1,2);
-            output += (task+";"+listOfTasks.get(i).isDone+";"+listOfTasks.get(i).description);
+            output += (task+" | "+((listOfTasks.get(i).isDone) ? "1":"0")+" | "+listOfTasks.get(i).description);
             if (task.equals("D") || task.equals("E")) {
                 String[] temp = listOfTasks.get(i).getItem().split(": ");
-                output += ";"+temp[1].substring(0,temp[1].length()-1);
+                output += " | "+temp[1].substring(0,temp[1].length()-1);
             }
             output+="\n";
         }
