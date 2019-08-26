@@ -1,31 +1,31 @@
 public class DateAndTime {
-    protected static  String Day;
-    protected static String Month;
-    protected static String Year;
-    protected static String Time;
+    protected String Day;
+    protected String Month;
+    protected String Year;
+    protected String Time;
 
-
-    public DateAndTime(String dateandtime) {
-        if (dateAndTimeChecker(dateandtime)) {
-            String date = dateandtime.split(" ")[0];
-            String time = dateandtime.split(" ")[1];
+    public DateAndTime(String dateAndTime) {
+        if (dateAndTimeChecker(dateAndTime)) {
+            String date = dateAndTime.split(" ")[0];
+            String time = dateAndTime.split(" ")[1];
             Day = setDay(date);
             Month = setMonth(date);
             Year = setYear(date);
             Time = setTime(time);
         }
     }
-    public DateAndTime(String dateandtime, int temp) {
-            Day = dateandtime.split(" ")[0];
-            Month = dateandtime.split(" ")[2];
-            Year = dateandtime.split(" ")[3].substring(0, dateandtime.split(" ")[3].length() - 1);
-            Time = dateandtime.split(" ")[4];
+
+    public DateAndTime(String dateAndTime, int temp) {
+            Day = dateAndTime.split(" ")[0];
+            Month = dateAndTime.split(" ")[2];
+            Year = dateAndTime.split(" ")[3].substring(0, dateAndTime.split(" ")[3].length() - 1);
+            Time = dateAndTime.split(" ")[4];
     }
 
-    public static boolean dateAndTimeChecker(String dateandtime) {
-        if ((dateandtime.split(" ")).length == 2) {
-            String[] date = (dateandtime.split(" ")[0]).split("/");
-            String time = dateandtime.split(" ")[1];
+    public boolean dateAndTimeChecker(String dateAndTime) {
+        if ((dateAndTime.split(" ")).length == 2) {
+            String[] date = (dateAndTime.split(" ")[0]).split("/");
+            String time = dateAndTime.split(" ")[1];
             try {
                 if (date.length == 3 && Integer.parseInt(date[0]) >= 1 && Integer.parseInt(date[0]) <= 31
                         && Integer.parseInt(date[1]) >= 1 && Integer.parseInt(date[1]) <= 12
@@ -43,7 +43,7 @@ public class DateAndTime {
         return false;
     }
 
-    public static boolean dayOfMonthChecker(int day, int month) {
+    public boolean dayOfMonthChecker(int day, int month) {
         switch(month) {
             case 1: case 3: case 5: case 7: case 8: case 10: case 12:
                 return (day>=1 && day<=31);
@@ -54,11 +54,11 @@ public class DateAndTime {
         }
     }
 
-    public static String getDateAndTime() {
+    public String getDateAndTime() {
         return Day+" of "+Month+" "+Year+", "+Time;
     }
 
-    public static String setDay(String x) {
+    public String setDay(String x) {
         int count = Integer.parseInt(x.split("/")[0]);
         if (count>=10&&count<=20) return count+"th";
         switch(count%10) {
@@ -69,7 +69,7 @@ public class DateAndTime {
         }
     }
 
-    public static String setMonth(String x) {
+    public String setMonth(String x) {
         int count = Integer.parseInt(x.split("/")[1]);
         switch(count) {
             case 1: return "January";
@@ -87,11 +87,11 @@ public class DateAndTime {
         }
     }
 
-    public static String setYear(String x) {
+    public String setYear(String x) {
         return x.split("/")[2];
     }
 
-    public static String setTime(String x) {
+    public String setTime(String x) {
         int hours = Integer.parseInt(x.substring(0,2));
         String minutes = x.substring(2,4);
         String AM_PM = (hours>=12) ? "pm": "am";
