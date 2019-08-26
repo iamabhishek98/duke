@@ -32,7 +32,7 @@ public class Duke {
             else if (input.length()>=5 && input.substring(0,5).equals("todo ")) list.markToDo(input);
             else if (input.length()>=9 && input.substring(0,9).equals("deadline ")) list.markDeadline(input);
             else if (input.length()>=6 && input.substring(0,6).equals("event ")) list.markEvent(input);
-            else if (input.length()>=5 && input.substring(0,5).equals("find ")) list.findMatchingTasks(input);
+            else if (input.length()>=5 && input.substring(0,5).equals("find ")) list.printMatchingTasks(input);
             else {
                 DukeException.notRecognized();
             }

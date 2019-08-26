@@ -93,7 +93,7 @@ public class List {
         listOfTasks.add(x);
     }
 
-    public void findMatchingTasks(String input) {
+    public void printMatchingTasks(String input) {
         String newInput = input.substring(5);
         if (newInput.isEmpty()) DukeException.taskEmpty("find");
         else {

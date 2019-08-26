@@ -4,7 +4,7 @@ public class Event extends Task {
     public Event(String description, String date) {
         super(description);
         DateAndTime tempDate = new DateAndTime(date);
-        if (tempDate.dateAndTimeFormatChecker(date)) {
+        if (tempDate.dateAndTimeChecker(date)) {
             this.date = tempDate;
         } else {
             super.format = false;

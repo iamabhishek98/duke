@@ -6,7 +6,7 @@ public class DateAndTime {
 
 
     public DateAndTime(String dateandtime) {
-        if (dateAndTimeFormatChecker(dateandtime)) {
+        if (dateAndTimeChecker(dateandtime)) {
             String date = dateandtime.split(" ")[0];
             String time = dateandtime.split(" ")[1];
             Day = setDay(date);
@@ -22,7 +22,7 @@ public class DateAndTime {
             Time = dateandtime.split(" ")[4];
     }
 
-    public static boolean dateAndTimeFormatChecker(String dateandtime) {
+    public static boolean dateAndTimeChecker(String dateandtime) {
         if ((dateandtime.split(" ")).length == 2) {
             String[] date = (dateandtime.split(" ")[0]).split("/");
             String time = dateandtime.split(" ")[1];
@@ -31,7 +31,8 @@ public class DateAndTime {
                         && Integer.parseInt(date[1]) >= 1 && Integer.parseInt(date[1]) <= 12
                         && Integer.parseInt(date[2]) >= 1
                         && Integer.parseInt(time.substring(0, 2)) >= 0 && Integer.parseInt(time.substring(0, 2)) < 24
-                        && Integer.parseInt(time.substring(2, 4)) >= 0 && Integer.parseInt(time.substring(2, 4)) <= 59) {
+                        && Integer.parseInt(time.substring(2, 4)) >= 0 && Integer.parseInt(time.substring(2, 4)) <= 59
+                        && dayOfMonthChecker(Integer.parseInt(date[0]), Integer.parseInt(date[1]))) {
                     return true;
                 }
             } catch (Exception e) {
@@ -40,6 +41,17 @@ public class DateAndTime {
             return false;
         }
         return false;
+    }
+
+    public static boolean dayOfMonthChecker(int day, int month) {
+        switch(month) {
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                return (day>=1 && day<=31);
+            case 2:
+                return (day>=1 && day<=28);
+            default:
+                return (day>=1 && day<=30);
+        }
     }
 
     public static String getDateAndTime() {
