@@ -4,13 +4,21 @@ public class Deadline extends Task {
     public Deadline(String description, String date) {
         super(description);
         DateAndTime tempDate = new DateAndTime(date);
-        this.date = tempDate;
+        if (tempDate.dateAndTimeFormatChecker(date)) {
+            this.date = tempDate;
+        } else {
+            super.format = false;
+        }
     }
 
     public Deadline(String description, boolean isDone, String date) {
         super(description, isDone);
         DateAndTime tempDate = new DateAndTime(date,0);
-        this.date = tempDate;
+        if (tempDate.dateAndTimeFormatChecker(date)) {
+            this.date = tempDate;
+        } else {
+            super.format = false;
+        }
     }
 
     @Override

@@ -46,7 +46,7 @@ public class List {
 
     public void markToDo(String description, boolean isDone) {
         Task x = new ToDo(description,isDone);
-        list.add(x);
+        if (!x.description.isEmpty()) list.add(x);
     }
 
     public void markDeadline(String input) {
@@ -56,8 +56,10 @@ public class List {
             try {
                 String[] finalInput = newInput.split(" /by ");
                 Task x = new Deadline(finalInput[0], finalInput[1]);
-                list.add(x);
-                acknowledgment();
+                if (x.format) {
+                    list.add(x);
+                    acknowledgment();
+                } else DukeException.invalidDateAndTime();
             } catch(Exception e) {
                 DukeException.taskWrongFormat("deadline");
             }
@@ -66,7 +68,9 @@ public class List {
 
     public void markDeadline(String description, boolean isDone, String date) {
         Task x = new Deadline(description,isDone,date);
-        list.add(x);
+        if (x.format) {
+            list.add(x);
+        }
     }
 
     public void markEvent(String input) {
@@ -76,8 +80,10 @@ public class List {
             try {
                 String[] finalInput = newInput.split(" /at ");
                 Task x = new Event(finalInput[0], finalInput[1]);
-                list.add(x);
-                acknowledgment();
+                if (x.format) {
+                    list.add(x);
+                    acknowledgment();
+                } else DukeException.invalidDateAndTime();
             } catch(Exception e) {
                 DukeException.taskWrongFormat("event");
             }
@@ -86,7 +92,9 @@ public class List {
 
     public void markEvent(String description, boolean isDone, String date) {
         Task x = new Event(description,isDone,date);
-        list.add(x);
+        if (x.format) {
+            list.add(x);
+        }
     }
 
     public void printList() { //inout

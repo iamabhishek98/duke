@@ -1,15 +1,18 @@
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected boolean format;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.format = true;
     }
 
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+        this.format = true;
     }
 
     public String getStatusIcon() {

@@ -4,27 +4,44 @@ public class DateAndTime {
     protected static String Year;
     protected static String Time;
 
+
     public DateAndTime(String dateandtime) {
-        String date = dateandtime.split(" ")[0];
-        String time = dateandtime.split(" ")[1];
-        try {
+        if (dateAndTimeFormatChecker(dateandtime)) {
+            String date = dateandtime.split(" ")[0];
+            String time = dateandtime.split(" ")[1];
             Day = setDay(date);
             Month = setMonth(date);
             Year = setYear(date);
             Time = setTime(time);
-        } catch(Exception e) {
-            DukeException.invalidDateAndTime();
         }
     }
     public DateAndTime(String dateandtime, int temp) {
-        try {
+        if (dateAndTimeFormatChecker(dateandtime)) {
             Day = dateandtime.split(" ")[0];
             Month = dateandtime.split(" ")[2];
-            Year = dateandtime.split(" ")[3].substring(0,dateandtime.split(" ")[3].length()-1);
+            Year = dateandtime.split(" ")[3].substring(0, dateandtime.split(" ")[3].length() - 1);
             Time = dateandtime.split(" ")[4];
-        } catch(Exception e) {
-            DukeException.invalidDateAndTime();
         }
+    }
+
+    public static boolean dateAndTimeFormatChecker(String dateandtime) {
+        if ((dateandtime.split(" ")).length == 2) {
+            String[] date = (dateandtime.split(" ")[0]).split("/");
+            String time = dateandtime.split(" ")[1];
+            try {
+                if (date.length == 3 && Integer.parseInt(date[0]) >= 1 && Integer.parseInt(date[0]) <= 31
+                        && Integer.parseInt(date[1]) >= 1 && Integer.parseInt(date[1]) <= 12
+                        && Integer.parseInt(date[2]) >= 1
+                        && Integer.parseInt(time.substring(0, 2)) >= 0 && Integer.parseInt(time.substring(0, 2)) < 24
+                        && Integer.parseInt(time.substring(2, 4)) >= 0 && Integer.parseInt(time.substring(2, 4)) <= 59) {
+                    return true;
+                }
+            } catch (Exception e) {
+                return false;
+            }
+            return false;
+        }
+        return false;
     }
 
     public static String getDateAndTime() {
@@ -33,6 +50,7 @@ public class DateAndTime {
 
     public static String setDay(String x) {
         int count = Integer.parseInt(x.split("/")[0]);
+        if (count>=10&&count<=20) return count+"th";
         switch(count%10) {
             case 1: return count+"st";
             case 2: return count+"nd";
