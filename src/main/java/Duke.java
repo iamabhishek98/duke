@@ -4,7 +4,7 @@ public class Duke {
     private static List listOfTasks = new List();
 
     public static void main(String[] args) {
-        listOfTasks = FileOperations.readFile();
+        listOfTasks = Storage.readFile();
         startup();
         process();
     }
@@ -71,9 +71,9 @@ public class Duke {
             else {
                 InOut.output(ErrorMessages.notRecognized());
             }
-            FileOperations.writeFile(listOfTasks);
+            Storage.writeFile(listOfTasks);
         }
-        FileOperations.writeFile(listOfTasks);
+        Storage.writeFile(listOfTasks);
         scanner.close();
     }
 

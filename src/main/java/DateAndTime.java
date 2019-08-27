@@ -3,42 +3,80 @@ public class DateAndTime {
     protected String Month;
     protected String Year;
     protected String Time;
+    protected String startTime;
+    protected String endTime;
 
-    public DateAndTime(String dateAndTime) {
-        if (dateAndTimeChecker(dateAndTime)) {
-            String date = dateAndTime.split(" ")[0];
-            String time = dateAndTime.split(" ")[1];
-            Day = setDay(date);
-            Month = setMonth(date);
-            Year = setYear(date);
-            Time = setTime(time);
+    public DateAndTime(String dateAndTime, int eventType) {
+        if (eventType == 0) { // deadline
+            if (dateAndTimeChecker(dateAndTime, eventType)) {
+                String date = dateAndTime.split(" ")[0];
+                String time = dateAndTime.split(" ")[1];
+                this.Day = setDay(date);
+                this.Month = setMonth(date);
+                this.Year = setYear(date);
+                this.Time = setTime(time);
+            }
+        } else { // event
+            if (dateAndTimeChecker(dateAndTime, eventType)) {
+                String date = dateAndTime.split(" ")[0];
+                String startTime = dateAndTime.split(" ")[1].split("-",2)[0];
+                String endTime = dateAndTime.split(" ")[1].split("-",2)[1];
+                this.Day = setDay(date);
+                this.Month = setMonth(date);
+                this.Year = setYear(date);
+                this.startTime = setTime(startTime);
+                this.endTime = setTime(endTime);
+            }
         }
     }
 
-    public DateAndTime(String dateAndTime, int temp) {
-            Day = dateAndTime.split(" ")[0];
-            Month = dateAndTime.split(" ")[2];
-            Year = dateAndTime.split(" ")[3].substring(0, dateAndTime.split(" ")[3].length() - 1);
-            Time = dateAndTime.split(" ")[4];
+    public DateAndTime(String dateAndTime, int eventType, int dummy) {
+            this.Day = dateAndTime.split(" ")[0];
+            this.Month = dateAndTime.split(" ")[2];
+            this.Year = dateAndTime.split(" ")[3].substring(0, dateAndTime.split(" ")[3].length() - 1);
+            if (eventType == 0) {
+                this.Time = dateAndTime.split(" ")[4];
+            } else {
+                this.startTime = dateAndTime.split(" ")[4].split("-",2)[0];
+                this.endTime = dateAndTime.split(" ")[4].split("-",2)[1];
+            }
     }
 
-    public boolean dateAndTimeChecker(String dateAndTime) {
-        if ((dateAndTime.split(" ")).length == 2) {
-            String[] date = (dateAndTime.split(" ")[0]).split("/");
-            String time = dateAndTime.split(" ")[1];
-            try {
-                if (date.length == 3 && Integer.parseInt(date[0]) >= 1 && Integer.parseInt(date[0]) <= 31
-                        && Integer.parseInt(date[1]) >= 1 && Integer.parseInt(date[1]) <= 12
-                        && Integer.parseInt(date[2]) >= 1
-                        && Integer.parseInt(time.substring(0, 2)) >= 0 && Integer.parseInt(time.substring(0, 2)) < 24
-                        && Integer.parseInt(time.substring(2, 4)) >= 0 && Integer.parseInt(time.substring(2, 4)) <= 59
-                        && dayOfMonthChecker(Integer.parseInt(date[0]), Integer.parseInt(date[1]))) {
-                    return true;
-                }
-            } catch (Exception e) {
+    public boolean dateAndTimeChecker(String dateAndTime, int eventType) {
+        if (eventType == 0) { // deadline
+            if ((dateAndTime.split(" ")).length == 2) {
+                String[] date = (dateAndTime.split(" ")[0]).split("/");
+                String time = dateAndTime.split(" ")[1];
+                if (dateChecker(date) && timeChecker(time)) return true;
                 return false;
             }
-            return false;
+        } else { // event
+            if ((dateAndTime.split(" ")).length == 2) {
+                String[] date = (dateAndTime.split(" ")[0]).split("/");
+                String startTime = dateAndTime.split(" ")[1].split("-",2)[0];
+                String endTime = dateAndTime.split(" ")[1].split("-",2)[1];
+                if (dateChecker(date) && timeChecker(startTime) && timeChecker(endTime)) return true;
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public boolean dateChecker(String[] date) {
+        if (date.length == 3 && Integer.parseInt(date[0]) >= 1 && Integer.parseInt(date[0]) <= 31
+                && Integer.parseInt(date[1]) >= 1 && Integer.parseInt(date[1]) <= 12
+                && Integer.parseInt(date[2]) >= 1
+                && dayOfMonthChecker(Integer.parseInt(date[0]), Integer.parseInt(date[1]))) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean timeChecker(String time) {
+        if (time.length() == 4 && Integer.parseInt(time.substring(0, 2)) >= 0
+                && Integer.parseInt(time.substring(0, 2)) < 24 && Integer.parseInt(time.substring(2, 4)) >= 0
+                && Integer.parseInt(time.substring(2, 4)) <= 59) {
+            return true;
         }
         return false;
     }
@@ -54,8 +92,9 @@ public class DateAndTime {
         }
     }
 
-    public String getDateAndTime() {
-        return Day+" of "+Month+" "+Year+", "+Time;
+    public String getDateAndTime(int eventType) {
+        if (eventType == 0) return this.Day+" of "+this.Month+" "+this.Year+", "+this.Time;
+        else return this.Day+" of "+this.Month+" "+this.Year+", "+this.startTime+"-"+this.endTime;
     }
 
     public String setDay(String x) {
@@ -93,8 +132,9 @@ public class DateAndTime {
 
     public String setTime(String x) {
         int hours = Integer.parseInt(x.substring(0,2));
-        String minutes = x.substring(2,4);
+        int minutes = Integer.parseInt(x.substring(2,4));
         String AM_PM = (hours>=12) ? "pm": "am";
-        return ((hours>12) ? (hours-12):hours)+":"+minutes+AM_PM;
+        return ((hours == 0) ? "12" : ((hours>12) ? (hours-12) : hours))+
+                ((minutes == 0) ? "" : (":"+x.substring(2,4)))+AM_PM;
     }
 }

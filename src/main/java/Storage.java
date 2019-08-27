@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class FileOperations {
+public class Storage {
     public static List readFile() {
         List list = new List();
         File file = new File("./src/main/data/duke.txt");

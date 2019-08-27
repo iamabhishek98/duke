@@ -3,8 +3,8 @@ public class Event extends Task {
 
     public Event(String description, String date) {
         super(description);
-        DateAndTime tempDate = new DateAndTime(date);
-        if (tempDate.dateAndTimeChecker(date)) {
+        DateAndTime tempDate = new DateAndTime(date,1);
+        if (tempDate.dateAndTimeChecker(date,1)) {
             this.date = tempDate;
         } else {
             super.format = false;
@@ -13,12 +13,12 @@ public class Event extends Task {
 
     public Event(String description, boolean isDone, String date) {
         super(description, isDone);
-        DateAndTime tempDate = new DateAndTime(date, 0);
+        DateAndTime tempDate = new DateAndTime(date, 1,0);
         this.date = tempDate;
     }
 
     @Override
     public String getItem() {
-        return "[E]"+super.getItem()+" (at: "+date.getDateAndTime()+")";
+        return "[E]"+super.getItem()+" (at: "+date.getDateAndTime(1)+")";
     }
 }

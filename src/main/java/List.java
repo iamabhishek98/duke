@@ -34,7 +34,7 @@ public class List {
 
     public void markToDo(String input) throws DukeException{
         String newInput = input.substring(5);
-        if (newInput.isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("todo"));
+        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("todo"));
         Task x = new ToDo(newInput);
         listOfTasks.add(x);
         acknowledgment();
@@ -47,9 +47,9 @@ public class List {
 
     public void markDeadline(String input) throws DukeException{
         String newInput = input.substring(9);
-        if (newInput.isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("deadline"));
+        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("deadline"));
         try {
-            String[] finalInput = newInput.split(" /by ");
+            String[] finalInput = newInput.split(" /by ",2);
             Task x = new Deadline(finalInput[0], finalInput[1]);
             if (!x.format) throw new DukeException(ErrorMessages.invalidDateAndTime());
             else {
@@ -68,9 +68,9 @@ public class List {
 
     public void markEvent(String input) throws DukeException{
         String newInput = input.substring(6);
-        if (newInput.isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("event"));
+        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("event"));
         try {
-            String[] finalInput = newInput.split(" /at ");
+            String[] finalInput = newInput.split(" /at ",2);
             Task x = new Event(finalInput[0], finalInput[1]);
             if (!x.format) throw new DukeException(ErrorMessages.invalidDateAndTime());
             else {
@@ -89,7 +89,7 @@ public class List {
 
     public void printMatchingTasks(String input) throws DukeException{
         String newInput = input.substring(5);
-        if (newInput.isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("find"));
+        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("find"));
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (int i = 0; i < listOfTasks.size(); i++) {
             String[] descriptions = listOfTasks.get(i).description.split(" ");
