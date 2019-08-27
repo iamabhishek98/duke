@@ -10,7 +10,7 @@ public class Duke {
     }
 
     public static void startup() {
-        String tab = "\t\t\t\t\t\t ";
+        String tab = "\t\t\t\t\t\t\t  ";
         String logo = tab+" ____        _        \n"
                 +tab+ "|  _ \\ _   _| | _____ \n"
                 +tab+ "| | | | | | | |/ / _ \\\n"

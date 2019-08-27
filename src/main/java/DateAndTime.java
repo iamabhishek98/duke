@@ -55,7 +55,7 @@ public class DateAndTime {
                 String[] date = (dateAndTime.split(" ")[0]).split("/");
                 String startTime = dateAndTime.split(" ")[1].split("-",2)[0];
                 String endTime = dateAndTime.split(" ")[1].split("-",2)[1];
-                if (dateChecker(date) && timeChecker(startTime) && timeChecker(endTime)) return true;
+                if (dateChecker(date) && validTimesChecker(startTime,endTime)) return true;
                 return false;
             }
         }
@@ -76,6 +76,19 @@ public class DateAndTime {
         if (time.length() == 4 && Integer.parseInt(time.substring(0, 2)) >= 0
                 && Integer.parseInt(time.substring(0, 2)) < 24 && Integer.parseInt(time.substring(2, 4)) >= 0
                 && Integer.parseInt(time.substring(2, 4)) <= 59) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validTimesChecker(String startTime, String endTime) {
+        if (timeChecker(startTime) && timeChecker(endTime)) {
+            int startHour = Integer.parseInt(startTime.substring(0,2));
+            int startMin = Integer.parseInt(startTime.substring(2,4));
+            int endHour = Integer.parseInt(endTime.substring(0,2));
+            int endMin = Integer.parseInt(endTime.substring(2,4));
+            if (endHour<startHour) return false;
+            else if (endHour==startHour && endMin<startMin) return false;
             return true;
         }
         return false;

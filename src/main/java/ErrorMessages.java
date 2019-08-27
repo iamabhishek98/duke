@@ -3,8 +3,12 @@ public class ErrorMessages {
         return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     }
 
-    public static String taskEmpty(String task) {
-        return "☹ OOPS!!! The description of a "+task+" cannot be empty.";
+    public static String taskDescriptionEmpty(String task) {
+        return "☹ OOPS!!! The description of a "+task+" task cannot be empty.";
+    }
+
+    public static String taskDateAndTimeEmpty(String task) {
+        return "☹ OOPS!!! The date and time component of a "+task+" task cannot be empty.";
     }
 
     public static String taskWrongFormat(String task) {

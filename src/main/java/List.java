@@ -6,7 +6,7 @@ public class List {
 
     public void markDone(String input) throws DukeException {
         String[] newInput = input.split(" ");
-        if(newInput.length == 1) throw new DukeException(ErrorMessages.taskEmpty("delete"));
+        if(newInput.length == 1) throw new DukeException(ErrorMessages.taskDescriptionEmpty("delete"));
         try {
             int i = Integer.parseInt(newInput[1]);
             if (i < 0 || i > listOfTasks.size()) throw new DukeException(ErrorMessages.invalidIndex());
@@ -19,13 +19,14 @@ public class List {
 
     public void markDelete(String input) throws DukeException {
         String[] newInput = input.split(" ");
-        if(newInput.length == 1) throw new DukeException(ErrorMessages.taskEmpty("delete"));
+        if(newInput.length == 1) throw new DukeException(ErrorMessages.taskDescriptionEmpty("delete"));
         try {
             int i = Integer.parseInt(newInput[1]);
             if (i < 0 || i > listOfTasks.size()) throw new DukeException(ErrorMessages.invalidIndex());
             String numberOfTasks = ((listOfTasks.size() - 1) != 1) ? "tasks" : "task";
             int count = listOfTasks.size() - 1;
-            InOut.output("Noted. I've removed this task:\n" + SPACE + listOfTasks.get(i - 1).getItem() + "\n\t Now you have " + count + " " + numberOfTasks + " in the list.");
+            InOut.output("Noted. I've removed this task:\n" + SPACE + listOfTasks.get(i - 1).getItem()
+                    + "\n\t Now you have " + count + " " + numberOfTasks + " in the list.");
             listOfTasks.remove(i - 1);
         } catch (ArrayIndexOutOfBoundsException e) {
             InOut.output(ErrorMessages.taskWrongFormat("delete"));
@@ -34,7 +35,7 @@ public class List {
 
     public void markToDo(String input) throws DukeException{
         String newInput = input.substring(5);
-        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("todo"));
+        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskDescriptionEmpty("todo"));
         Task x = new ToDo(newInput);
         listOfTasks.add(x);
         acknowledgment();
@@ -47,10 +48,14 @@ public class List {
 
     public void markDeadline(String input) throws DukeException{
         String newInput = input.substring(9);
-        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("deadline"));
+        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskDescriptionEmpty("deadline"));
         try {
-            String[] finalInput = newInput.split(" /by ",2);
-            Task x = new Deadline(finalInput[0], finalInput[1]);
+            int lastOccurrence = newInput.lastIndexOf(" /by ");
+            if (lastOccurrence == -1 || newInput.substring(0,lastOccurrence).trim().isEmpty()) throw new DukeException(ErrorMessages.taskDescriptionEmpty("deadline"));
+            String description = newInput.substring(0,lastOccurrence);
+            String dateAndTime = newInput.substring(lastOccurrence+5);
+            if (dateAndTime.trim().isEmpty()) throw new DukeException(ErrorMessages.taskDateAndTimeEmpty("deadline"));
+            Task x = new Deadline(description, dateAndTime);
             if (!x.format) throw new DukeException(ErrorMessages.invalidDateAndTime());
             else {
                 listOfTasks.add(x);
@@ -68,10 +73,15 @@ public class List {
 
     public void markEvent(String input) throws DukeException{
         String newInput = input.substring(6);
-        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("event"));
+        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskDescriptionEmpty("event"));
         try {
-            String[] finalInput = newInput.split(" /at ",2);
-            Task x = new Event(finalInput[0], finalInput[1]);
+            int lastOccurrence = newInput.lastIndexOf(" /at ");
+            if (lastOccurrence == -1 || newInput.substring(0,lastOccurrence).trim().isEmpty()) throw new DukeException(ErrorMessages.taskDescriptionEmpty("event"));
+            String description = newInput.substring(0,lastOccurrence);
+            String dateAndTime = newInput.substring(lastOccurrence+5);
+            if (dateAndTime.trim().isEmpty()) throw new DukeException(ErrorMessages.taskDateAndTimeEmpty("event"));
+            if (description.trim().isEmpty() || dateAndTime.trim().isEmpty()) throw new DukeException(ErrorMessages.taskDescriptionEmpty("event"));
+            Task x = new Event(description, dateAndTime);
             if (!x.format) throw new DukeException(ErrorMessages.invalidDateAndTime());
             else {
                 listOfTasks.add(x);
@@ -89,7 +99,7 @@ public class List {
 
     public void printMatchingTasks(String input) throws DukeException{
         String newInput = input.substring(5);
-        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskEmpty("find"));
+        if (newInput.trim().isEmpty()) throw new DukeException(ErrorMessages.taskDescriptionEmpty("find"));
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (int i = 0; i < listOfTasks.size(); i++) {
             String[] descriptions = listOfTasks.get(i).description.split(" ");
@@ -140,6 +150,7 @@ public class List {
 
     protected void acknowledgment() {
         String numberOfTasks = (listOfTasks.size()!=1) ? "tasks":"task";
-        InOut.output("Got it. I've added this task:\n"+SPACE+listOfTasks.get(listOfTasks.size()-1).getItem()+"\n\t Now you have "+listOfTasks.size()+" "+numberOfTasks+" in the list.");
+        InOut.output("Got it. I've added this task:\n" + SPACE + listOfTasks.get(listOfTasks.size()-1).getItem()
+                + "\n\t Now you have " + listOfTasks.size() + " " + numberOfTasks + " in the list.");
     }
 }
