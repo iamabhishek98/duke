@@ -11,7 +11,7 @@ public class Deadline extends Task {
         }
     }
 
-    public Deadline(String description, boolean isDone, String date) {
+    public Deadline(String description, boolean isDone, String date) { // when reading from file
         super(description, isDone);
         DateAndTime tempDate = new DateAndTime(date,0,0);
         this.date = tempDate;

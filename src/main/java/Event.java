@@ -11,7 +11,7 @@ public class Event extends Task {
         }
     }
 
-    public Event(String description, boolean isDone, String date) {
+    public Event(String description, boolean isDone, String date) { // when reading from file
         super(description, isDone);
         DateAndTime tempDate = new DateAndTime(date, 1,0);
         this.date = tempDate;

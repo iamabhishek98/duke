@@ -11,9 +11,9 @@ public class List {
             int i = Integer.parseInt(newInput[1]);
             if (i < 0 || i > listOfTasks.size()) throw new DukeException(ErrorMessages.invalidIndex());
             listOfTasks.get(i - 1).isDone = true;
-            InOut.output("Nice! I've marked this task as done:\n" + SPACE + listOfTasks.get(i - 1).getItem());
+            InOut.outputDuke("Nice! I've marked this task as done:\n" + SPACE + listOfTasks.get(i - 1).getItem());
         } catch (ArrayIndexOutOfBoundsException e) {
-            InOut.output(ErrorMessages.taskWrongFormat("delete"));
+            InOut.outputDuke(ErrorMessages.taskWrongFormat("delete"));
         }
     }
 
@@ -25,11 +25,11 @@ public class List {
             if (i < 0 || i > listOfTasks.size()) throw new DukeException(ErrorMessages.invalidIndex());
             String numberOfTasks = ((listOfTasks.size() - 1) != 1) ? "tasks" : "task";
             int count = listOfTasks.size() - 1;
-            InOut.output("Noted. I've removed this task:\n" + SPACE + listOfTasks.get(i - 1).getItem()
+            InOut.outputDuke("Noted. I've removed this task:\n" + SPACE + listOfTasks.get(i - 1).getItem()
                     + "\n\t Now you have " + count + " " + numberOfTasks + " in the list.");
             listOfTasks.remove(i - 1);
         } catch (ArrayIndexOutOfBoundsException e) {
-            InOut.output(ErrorMessages.taskWrongFormat("delete"));
+            InOut.outputDuke(ErrorMessages.taskWrongFormat("delete"));
         }
     }
 
@@ -62,7 +62,7 @@ public class List {
                 acknowledgment();
             }
         } catch(ArrayIndexOutOfBoundsException e) {
-            InOut.output(ErrorMessages.taskWrongFormat("deadline"));
+            InOut.outputDuke(ErrorMessages.taskWrongFormat("deadline"));
         }
     }
 
@@ -88,7 +88,7 @@ public class List {
                 acknowledgment();
             }
         } catch(ArrayIndexOutOfBoundsException e) {
-            InOut.output(ErrorMessages.taskWrongFormat("event"));
+            InOut.outputDuke(ErrorMessages.taskWrongFormat("event"));
         }
     }
 
@@ -110,7 +110,7 @@ public class List {
             }
         }
         if (matchingTasks.isEmpty()) {
-            InOut.output("There are no matching tasks in the list."); return;
+            InOut.outputDuke("There are no matching tasks in the list."); return;
         }
         System.out.println(InOut.HORIZONTAL_LINE);
         System.out.println("\t Here are the matching tasks in your list:");
@@ -123,7 +123,7 @@ public class List {
 
     public void printList() {
         if (listOfTasks.isEmpty()) {
-            InOut.output("There are no tasks in the list."); return;
+            InOut.outputDuke("There are no tasks in the list."); return;
         }
         System.out.println(InOut.HORIZONTAL_LINE);
         System.out.println("\t Here are the tasks in your list:");
@@ -150,7 +150,7 @@ public class List {
 
     protected void acknowledgment() {
         String numberOfTasks = (listOfTasks.size()!=1) ? "tasks":"task";
-        InOut.output("Got it. I've added this task:\n" + SPACE + listOfTasks.get(listOfTasks.size()-1).getItem()
+        InOut.outputDuke("Got it. I've added this task:\n" + SPACE + listOfTasks.get(listOfTasks.size()-1).getItem()
                 + "\n\t Now you have " + listOfTasks.size() + " " + numberOfTasks + " in the list.");
     }
 }
