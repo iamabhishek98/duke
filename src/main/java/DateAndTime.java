@@ -82,15 +82,8 @@ public class DateAndTime {
     }
 
     public boolean validTimesChecker(String startTime, String endTime) {
-        if (timeChecker(startTime) && timeChecker(endTime)) {
-            int startHour = Integer.parseInt(startTime.substring(0,2));
-            int startMin = Integer.parseInt(startTime.substring(2,4));
-            int endHour = Integer.parseInt(endTime.substring(0,2));
-            int endMin = Integer.parseInt(endTime.substring(2,4));
-            if (endHour<startHour) return false;
-            else if (endHour==startHour && endMin<startMin) return false;
-            return true;
-        }
+        if (timeChecker(startTime) && timeChecker(endTime)
+                && Integer.parseInt(endTime)>=Integer.parseInt(startTime)) return true;
         return false;
     }
 

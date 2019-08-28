@@ -6,14 +6,14 @@ public class List {
 
     public void markDone(String input) throws DukeException {
         String[] newInput = input.split(" ");
-        if(newInput.length == 1) throw new DukeException(ErrorMessages.taskDescriptionEmpty("delete"));
+        if(newInput.length == 1) throw new DukeException(ErrorMessages.taskDescriptionEmpty("done"));
         try {
             int i = Integer.parseInt(newInput[1]);
             if (i < 0 || i > listOfTasks.size()) throw new DukeException(ErrorMessages.invalidIndex());
             listOfTasks.get(i - 1).isDone = true;
             InOut.outputDuke("Nice! I've marked this task as done:\n" + SPACE + listOfTasks.get(i - 1).getItem());
-        } catch (ArrayIndexOutOfBoundsException e) {
-            InOut.outputDuke(ErrorMessages.taskWrongFormat("delete"));
+        } catch (Exception e) {
+            InOut.outputDuke(ErrorMessages.taskWrongFormat("done"));
         }
     }
 
@@ -28,7 +28,7 @@ public class List {
             InOut.outputDuke("Noted. I've removed this task:\n" + SPACE + listOfTasks.get(i - 1).getItem()
                     + "\n\t Now you have " + count + " " + numberOfTasks + " in the list.");
             listOfTasks.remove(i - 1);
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (Exception e) {
             InOut.outputDuke(ErrorMessages.taskWrongFormat("delete"));
         }
     }
@@ -61,7 +61,7 @@ public class List {
                 listOfTasks.add(x);
                 acknowledgment();
             }
-        } catch(ArrayIndexOutOfBoundsException e) {
+        } catch (Exception e) {
             InOut.outputDuke(ErrorMessages.taskWrongFormat("deadline"));
         }
     }
@@ -87,7 +87,7 @@ public class List {
                 listOfTasks.add(x);
                 acknowledgment();
             }
-        } catch(ArrayIndexOutOfBoundsException e) {
+        } catch (Exception e) {
             InOut.outputDuke(ErrorMessages.taskWrongFormat("event"));
         }
     }
