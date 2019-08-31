@@ -1,0 +1,5 @@
+D | 1 | watch sacred games | 28th of August 2020, 7:45pm
+D | 1 | return book | 20th of December 2012, 12am
+E | 0 | apply for sep | 13th of May 2020, 1pm-7:57pm
+E | 0 | hello world | 12th of December 2012, 3:59pm-4pm
+T | 1 | finish cs assignment
