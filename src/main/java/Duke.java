@@ -5,7 +5,7 @@ public class Duke {
     private static Storage storage;
 
     public static void main(String[] args) {
-        runDuke("./duke/src/main/data/duke.txt");
+        runDuke("src/main/data/duke.txt");
     }
 
     public static void runDuke(String filePath) {
