@@ -2,7 +2,7 @@ public class InOut {
     public static String HORIZONTAL_LINE = "\t___________________________________________________________________________";
 
     public static void startDuke() {
-        String tab = "\t\t\t\t\t\t\t  ";
+        String tab = "\t ";
         String logo = tab+" ____        _        \n"
                 +tab+ "|  _ \\ _   _| | _____ \n"
                 +tab+ "| | | | | | | |/ / _ \\\n"
