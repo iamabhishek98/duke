@@ -1,3 +1,0 @@
-D | 1 | watch sacred games | 28th of August 2020, 7:45pm
-E | 0 | hello world | 12th of December 2012, 3:59pm-4pm
-T | 0 | finish cs assignment
