@@ -1,4 +1,4 @@
-public class InOut {
+public class UI {
     public static String HORIZONTAL_LINE = "\t___________________________________________________________________________";
 
     public static void startDuke() {

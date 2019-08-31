@@ -10,7 +10,7 @@ REM change directories to location of main file
 cd ..\src\main\java 
 
 REM compile the code into the bin folder
-javac -d ..\..\..\bin Duke.java
+javac -cp ..\..\..\src  -d ..\..\..\bin Duke.java
 
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********

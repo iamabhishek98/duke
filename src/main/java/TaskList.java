@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class List {
+public class TaskList {
     protected final String SPACE = "\t    ";
     protected ArrayList<Task> listOfTasks = new ArrayList<>();
 
@@ -11,9 +11,9 @@ public class List {
             int i = Integer.parseInt(newInput[1]);
             if (i < 0 || i > listOfTasks.size()) throw new DukeException(ErrorMessages.invalidIndex());
             listOfTasks.get(i - 1).isDone = true;
-            InOut.outputDuke("Nice! I've marked this task as done:\n" + SPACE + listOfTasks.get(i - 1).getItem());
+            UI.outputDuke("Nice! I've marked this task as done:\n" + SPACE + listOfTasks.get(i - 1).getItem());
         } catch (Exception e) {
-            InOut.outputDuke(ErrorMessages.taskWrongFormat("done"));
+            UI.outputDuke(ErrorMessages.taskWrongFormat("done"));
         }
     }
 
@@ -25,11 +25,11 @@ public class List {
             if (i < 0 || i > listOfTasks.size()) throw new DukeException(ErrorMessages.invalidIndex());
             String numberOfTasks = ((listOfTasks.size() - 1) != 1) ? "tasks" : "task";
             int count = listOfTasks.size() - 1;
-            InOut.outputDuke("Noted. I've removed this task:\n" + SPACE + listOfTasks.get(i - 1).getItem()
+            UI.outputDuke("Noted. I've removed this task:\n" + SPACE + listOfTasks.get(i - 1).getItem()
                     + "\n\t Now you have " + count + " " + numberOfTasks + " in the list.");
             listOfTasks.remove(i - 1);
         } catch (Exception e) {
-            InOut.outputDuke(ErrorMessages.taskWrongFormat("delete"));
+            UI.outputDuke(ErrorMessages.taskWrongFormat("delete"));
         }
     }
 
@@ -62,7 +62,7 @@ public class List {
                 acknowledgment();
             }
         } catch (Exception e) {
-            InOut.outputDuke(ErrorMessages.taskWrongFormat("deadline"));
+            UI.outputDuke(ErrorMessages.taskWrongFormat("deadline"));
         }
     }
 
@@ -88,7 +88,7 @@ public class List {
                 acknowledgment();
             }
         } catch (Exception e) {
-            InOut.outputDuke(ErrorMessages.taskWrongFormat("event"));
+            UI.outputDuke(ErrorMessages.taskWrongFormat("event"));
         }
     }
 
@@ -110,28 +110,28 @@ public class List {
             }
         }
         if (matchingTasks.isEmpty()) {
-            InOut.outputDuke("There are no matching tasks in the list."); return;
+            UI.outputDuke("There are no matching tasks in the list."); return;
         }
-        System.out.println(InOut.HORIZONTAL_LINE);
+        System.out.println(UI.HORIZONTAL_LINE);
         System.out.println("\t Here are the matching tasks in your list:");
         for (int i = 0 ; i < matchingTasks.size(); i++) {
             int count = i+1;
             System.out.println("\t "+count+". "+matchingTasks.get(i).getItem());
         }
-        System.out.println(InOut.HORIZONTAL_LINE);
+        System.out.println(UI.HORIZONTAL_LINE);
     }
 
     public void printList() {
         if (listOfTasks.isEmpty()) {
-            InOut.outputDuke("There are no tasks in the list."); return;
+            UI.outputDuke("There are no tasks in the list."); return;
         }
-        System.out.println(InOut.HORIZONTAL_LINE);
+        System.out.println(UI.HORIZONTAL_LINE);
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0 ; i < listOfTasks.size(); i++) {
             int count = i+1;
             System.out.println("\t "+count+". "+listOfTasks.get(i).getItem());
         }
-        System.out.println(InOut.HORIZONTAL_LINE);
+        System.out.println(UI.HORIZONTAL_LINE);
     }
 
     public String writeListToFile() {
@@ -150,7 +150,7 @@ public class List {
 
     protected void acknowledgment() {
         String numberOfTasks = (listOfTasks.size()!=1) ? "tasks":"task";
-        InOut.outputDuke("Got it. I've added this task:\n" + SPACE + listOfTasks.get(listOfTasks.size()-1).getItem()
+        UI.outputDuke("Got it. I've added this task:\n" + SPACE + listOfTasks.get(listOfTasks.size()-1).getItem()
                 + "\n\t Now you have " + listOfTasks.size() + " " + numberOfTasks + " in the list.");
     }
 }
