@@ -12,6 +12,7 @@ public class TaskList {
         ui = new UI();
     }
 
+    // for user input "done ..."
     public void markDone(String input) throws DukeException {
         String[] newInput = input.split(" ");
         if(newInput.length == 1) throw new DukeException(errorMessages.taskDescriptionEmpty("done"));
@@ -25,6 +26,7 @@ public class TaskList {
         }
     }
 
+    // for user input "delete ..."
     public void markDelete(String input) throws DukeException {
         String[] newInput = input.split(" ");
         if(newInput.length == 1) throw new DukeException(errorMessages.taskDescriptionEmpty("delete"));
@@ -41,6 +43,7 @@ public class TaskList {
         }
     }
 
+    // for user entry "todo ..."
     public void markToDo(String input) throws DukeException{
         String newInput = input.substring(5);
         if (newInput.trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("todo"));
@@ -49,11 +52,13 @@ public class TaskList {
         acknowledgment();
     }
 
+    // reading from database
     public void markToDo(String description, boolean isDone) {
         Task x = new ToDo(description,isDone);
         listOfTasks.add(x);
     }
 
+    // for user entry "deadline ..."
     public void markDeadline(String input) throws DukeException{
         String newInput = input.substring(9);
         if (newInput.trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("deadline"));
@@ -74,11 +79,13 @@ public class TaskList {
         }
     }
 
+    // reading from database
     public void markDeadline(String description, boolean isDone, String date) {
         Task x = new Deadline(description,isDone,date);
         listOfTasks.add(x);
     }
 
+    // for user entry "event ..."
     public void markEvent(String input) throws DukeException{
         String newInput = input.substring(6);
         if (newInput.trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("event"));
@@ -100,11 +107,13 @@ public class TaskList {
         }
     }
 
+    // reading from database
     public void markEvent(String description, boolean isDone, String date) {
         Task x = new Event(description,isDone,date);
         listOfTasks.add(x);
     }
 
+    // for user input "find ..."
     public void printMatchingTasks(String input) throws DukeException{
         String newInput = input.substring(5);
         if (newInput.trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("find"));
@@ -129,6 +138,7 @@ public class TaskList {
         System.out.println(ui.HORIZONTAL_LINE);
     }
 
+    // for user input "list"
     public void printList() {
         if (listOfTasks.isEmpty()) {
             ui.printDuke("There are no tasks in the list."); return;
@@ -142,6 +152,7 @@ public class TaskList {
         System.out.println(ui.HORIZONTAL_LINE);
     }
 
+    // to update database with new list
     public StringBuilder writeListToFile() {
         StringBuilder output = new StringBuilder();
         for (int i = 0 ; i < listOfTasks.size(); i++) {
@@ -156,6 +167,7 @@ public class TaskList {
         return output;
     }
 
+    // acknowledgement upon adding task to the list
     private void acknowledgment() {
         String numberOfTasks = (listOfTasks.size()!=1) ? "tasks":"task";
         ui.printDuke("Got it. I've added this task:\n" + SPACE + listOfTasks.get(listOfTasks.size()-1).getItem()
