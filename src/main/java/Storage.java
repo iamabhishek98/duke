@@ -4,19 +4,22 @@ import java.util.Scanner;
 
 public class Storage {
     protected String filePath;
+    protected TaskList taskList;
+    protected ErrorMessages errorMessages;
 
     public Storage(String filePath) {
         this.filePath = filePath;
+        taskList = new TaskList();
+        errorMessages = new ErrorMessages();
     }
 
-    public TaskList readFile() {
-        TaskList taskList = new TaskList();
-        File file = new File(this.filePath);
+    public TaskList load() {
+        File file = new File(filePath);
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String[] line = scanner.nextLine().split(" \\| ");
-                boolean status = (Integer.parseInt(line[1]) == 1) ? true : false;
+                boolean status = (Integer.parseInt(line[1])==1);
                 if (line[0].equals("T")) {
                     taskList.markToDo(line[2],status);
                 }
@@ -29,18 +32,18 @@ public class Storage {
             }
             scanner.close();
         } catch (Exception e) {
-            ErrorMessages.fileNotFound();
+            errorMessages.fileNotFound();
         }
         return taskList;
     }
 
-    public void writeFile(TaskList taskList) {
+    public void update(TaskList taskList) {
         try {
-            PrintWriter writer = new PrintWriter("./src/main/data/duke.txt");
+            PrintWriter writer = new PrintWriter(filePath);
             writer.print(taskList.writeListToFile());
             writer.close();
         } catch (Exception e) {
-            ErrorMessages.fileNotFound();
+            errorMessages.fileNotFound();
         }
     }
 }

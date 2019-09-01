@@ -1,7 +1,7 @@
 public class UI {
-    public static String HORIZONTAL_LINE = "\t___________________________________________________________________________";
+    public String HORIZONTAL_LINE = "\t___________________________________________________________________________";
 
-    public static void startDuke() {
+    public void welcomeDuke() {
         String tab = "\t ";
         String logo = tab+" ____        _        \n"
                 +tab+ "|  _ \\ _   _| | _____ \n"
@@ -9,18 +9,18 @@ public class UI {
                 +tab+ "| |_| | |_| |   <  __/\n"
                 +tab+"|____/ \\__,_|_|\\_\\___|\n";
         System.out.print(logo);
-        outputDuke("Hello! I'm Duke\n\t What can I do for you?");
+        printDuke("Hello! I'm Duke\n\t What can I do for you?");
     }
 
-    public static void outputDuke(String input) {
+    public void printDuke(String input) {
         System.out.println(HORIZONTAL_LINE);
         System.out.println("\t "+input);
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public static boolean byeDuke(String input) {
+    public boolean byeDuke(String input) {
         if (input.length()==3 && input.equals("bye")) {
-            outputDuke("Bye. Hope to see you again soon!");
+            printDuke("Bye. Hope to see you again soon!");
             return true;
         }
         return false;

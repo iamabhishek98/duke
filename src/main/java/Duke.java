@@ -2,69 +2,35 @@ import java.util.Scanner;
 
 public class Duke {
     private static TaskList listOfTasks;
+    private static UI ui;
     private static Storage storage;
+    private static Parser parser;
 
-    public static void main(String[] args) {
-        runDuke("src/main/data/duke.txt");
+    public Duke(String filePath) {
+        ui = new UI();
+        storage = new Storage(filePath);
+        listOfTasks = storage.load();
+        parser = new Parser();
     }
 
-    public static void runDuke(String filePath) {
-        storage = new Storage(filePath);
-        listOfTasks = storage.readFile();
-        UI.startDuke();
+    public void runDuke() {
+        ui.welcomeDuke();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
-            if (UI.byeDuke(input)) break;
-            else if (input.length()==4 && input.equals("list")) listOfTasks.printList();
-            else if (input.length()>=5 && input.substring(0,5).equals("done ")) {
-                try {
-                    listOfTasks.markDone(input);
-                } catch (DukeException e) {
-                    UI.outputDuke(e.getMessage());
-                }
+            try {
+                if (ui.byeDuke(input)) break;
+                parser.parseInput(input, listOfTasks);
+            } catch(DukeException e) {
+                ui.printDuke(e.getMessage());
             }
-            else if (input.length()>=7 && input.substring(0,7).equals("delete ")) {
-                try {
-                    listOfTasks.markDelete(input);
-                } catch (DukeException e) {
-                    UI.outputDuke(e.getMessage());
-                }
-            }
-            else if (input.length()>=5 && input.substring(0,5).equals("todo ")) {
-                try {
-                    listOfTasks.markToDo(input);
-                } catch (DukeException e) {
-                    UI.outputDuke(e.getMessage());
-                }
-            }
-            else if (input.length()>=9 && input.substring(0,9).equals("deadline ")) {
-                try {
-                    listOfTasks.markDeadline(input);
-                } catch (DukeException e) {
-                    UI.outputDuke(e.getMessage());
-                }
-            }
-            else if (input.length()>=6 && input.substring(0,6).equals("event ")) {
-                try {
-                    listOfTasks.markEvent(input);
-                } catch (DukeException e) {
-                    UI.outputDuke(e.getMessage());
-                }
-            }
-            else if (input.length()>=5 && input.substring(0,5).equals("find ")) {
-                try {
-                    listOfTasks.printMatchingTasks(input);
-                } catch (DukeException e) {
-                    UI.outputDuke(e.getMessage());
-                }
-            }
-            else {
-                UI.outputDuke(ErrorMessages.notRecognized());
-            }
-            storage.writeFile(listOfTasks);
+            storage.update(listOfTasks);
         }
-        storage.writeFile(listOfTasks);
+        storage.update(listOfTasks);
         scanner.close();
+    }
+
+    public static void main(String[] args) {
+        new Duke("src/main/data/duke.txt").runDuke();
     }
 }
