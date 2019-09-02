@@ -21,8 +21,8 @@ public class TaskList {
             if (i < 0 || i > listOfTasks.size()) throw new DukeException(errorMessages.invalidIndex());
             listOfTasks.get(i - 1).isDone = true;
             ui.printDuke("Nice! I've marked this task as done:\n" + SPACE + listOfTasks.get(i - 1).getItem());
-        } catch (Exception e) {
-            ui.printDuke(errorMessages.taskWrongFormat("done"));
+        } catch (NumberFormatException e) {
+            throw new DukeException(errorMessages.taskWrongFormat("done"));
         }
     }
 
@@ -38,8 +38,8 @@ public class TaskList {
             ui.printDuke("Noted. I've removed this task:\n" + SPACE + listOfTasks.get(i - 1).getItem()
                     + "\n\t Now you have " + count + " " + numberOfTasks + " in the list.");
             listOfTasks.remove(i - 1);
-        } catch (Exception e) {
-            ui.printDuke(errorMessages.taskWrongFormat("delete"));
+        } catch (NumberFormatException e) {
+            throw new DukeException(errorMessages.taskWrongFormat("delete"));
         }
     }
 
@@ -64,9 +64,9 @@ public class TaskList {
         if (newInput.trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("deadline"));
         try {
             int lastOccurrence = newInput.lastIndexOf(" /by ");
-            if (lastOccurrence == -1 || newInput.substring(0,lastOccurrence).trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("deadline"));
             String description = newInput.substring(0,lastOccurrence);
             String dateAndTime = newInput.substring(lastOccurrence+5);
+            if (description.trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("deadline"));
             if (dateAndTime.trim().isEmpty()) throw new DukeException(errorMessages.taskDateAndTimeEmpty("deadline"));
             Task x = new Deadline(description, dateAndTime);
             if (!x.format) throw new DukeException(errorMessages.invalidDateAndTime());
@@ -74,8 +74,8 @@ public class TaskList {
                 listOfTasks.add(x);
                 acknowledgment();
             }
-        } catch (Exception e) {
-            ui.printDuke(errorMessages.taskWrongFormat("deadline"));
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new DukeException(errorMessages.taskWrongFormat("deadline"));
         }
     }
 
@@ -91,19 +91,18 @@ public class TaskList {
         if (newInput.trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("event"));
         try {
             int lastOccurrence = newInput.lastIndexOf(" /at ");
-            if (lastOccurrence == -1 || newInput.substring(0,lastOccurrence).trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("event"));
             String description = newInput.substring(0,lastOccurrence);
             String dateAndTime = newInput.substring(lastOccurrence+5);
+            if (description.trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("event"));
             if (dateAndTime.trim().isEmpty()) throw new DukeException(errorMessages.taskDateAndTimeEmpty("event"));
-            if (description.trim().isEmpty() || dateAndTime.trim().isEmpty()) throw new DukeException(errorMessages.taskDescriptionEmpty("event"));
             Task x = new Event(description, dateAndTime);
             if (!x.format) throw new DukeException(errorMessages.invalidDateAndTime());
             else {
                 listOfTasks.add(x);
                 acknowledgment();
             }
-        } catch (Exception e) {
-            ui.printDuke(errorMessages.taskWrongFormat("event"));
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new DukeException(errorMessages.taskWrongFormat("event"));
         }
     }
 
