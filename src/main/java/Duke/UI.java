@@ -1,9 +1,13 @@
+package Duke;
+
+import ErrorHandling.ErrorMessages;
+
 import java.util.Scanner;
 
 public class UI {
     public String HORIZONTAL_LINE = "\t___________________________________________________________________________";
-    Scanner scanner;
-    ErrorMessages errorMessages;
+    public Scanner scanner;
+    public ErrorMessages errorMessages;
 
     public UI() {
         scanner = new Scanner(System.in);

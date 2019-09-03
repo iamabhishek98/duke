@@ -1,3 +1,10 @@
+package Commands;
+
+import Duke.Storage;
+import Tasks.TaskList;
+import Duke.UI;
+import ErrorHandling.DukeException;
+
 public class DeleteCommand extends Command {
     public DeleteCommand(String input) {
         super(input);

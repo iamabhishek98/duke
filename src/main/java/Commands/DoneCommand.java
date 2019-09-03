@@ -1,3 +1,10 @@
+package Commands;
+
+import Duke.Storage;
+import Tasks.TaskList;
+import Duke.UI;
+import ErrorHandling.DukeException;
+
 public class DoneCommand extends Command {
     public DoneCommand(String input) {
         super(input);

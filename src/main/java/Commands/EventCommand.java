@@ -1,3 +1,12 @@
+package Commands;
+
+import Duke.Storage;
+import Tasks.Task;
+import Tasks.TaskList;
+import Duke.UI;
+import ErrorHandling.DukeException;
+import Tasks.Event;
+
 public class EventCommand extends Command {
     public EventCommand(String input) {
         super(input);

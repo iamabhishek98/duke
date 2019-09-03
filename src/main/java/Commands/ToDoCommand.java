@@ -1,3 +1,12 @@
+package Commands;
+
+import Duke.Storage;
+import Tasks.Task;
+import Tasks.TaskList;
+import Duke.UI;
+import ErrorHandling.DukeException;
+import Tasks.ToDo;
+
 public class ToDoCommand extends Command {
     public ToDoCommand(String input) {
         super(input);

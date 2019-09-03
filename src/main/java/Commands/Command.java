@@ -1,3 +1,10 @@
+package Commands;
+
+import Duke.Storage;
+import Tasks.TaskList;
+import Duke.UI;
+import ErrorHandling.DukeException;
+
 abstract public class Command {
     protected String input;
     protected final String SPACE = "\t    ";

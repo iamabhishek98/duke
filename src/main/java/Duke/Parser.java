@@ -1,3 +1,8 @@
+package Duke;
+
+import Commands.*;
+import ErrorHandling.DukeException;
+
 public class Parser {
     private UI ui;
 
