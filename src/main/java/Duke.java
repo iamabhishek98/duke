@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Duke {
     private TaskList listOfTasks;
@@ -15,19 +14,17 @@ public class Duke {
 
     public void runDuke() {
         ui.welcomeDuke();
-        Scanner scanner = new Scanner(System.in);
         while (true) {
-            String input = scanner.nextLine();
+            String fullCommand = ui.readCommand();
             try {
-                if (ui.byeDuke(input)) break;
-                parser.parseInput(input, listOfTasks);
+                if (ui.byeDuke(fullCommand)) break;
+                parser.parseInput(fullCommand, listOfTasks);
             } catch(DukeException e) {
                 ui.printDuke(e.getMessage());
             }
             storage.update(listOfTasks);
         }
         storage.update(listOfTasks);
-        scanner.close();
     }
 
     public static void main(String[] args) {
