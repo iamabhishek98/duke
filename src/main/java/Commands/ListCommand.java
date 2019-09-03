@@ -17,8 +17,7 @@ public class ListCommand extends Command {
         System.out.println(ui.HORIZONTAL_LINE);
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0 ; i < tasks.size(); i++) {
-            int count = i+1;
-            System.out.println("\t "+count+". "+tasks.get(i).getItem());
+            System.out.println("\t "+(i+1)+". "+tasks.get(i).getItem());
         }
         System.out.println(ui.HORIZONTAL_LINE);
 
