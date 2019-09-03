@@ -3,9 +3,11 @@ import java.util.Scanner;
 public class UI {
     public String HORIZONTAL_LINE = "\t___________________________________________________________________________";
     Scanner scanner;
+    ErrorMessages errorMessages;
 
     public UI() {
         scanner = new Scanner(System.in);
+        errorMessages = new ErrorMessages();
     }
 
     public void welcomeDuke() {
@@ -29,12 +31,8 @@ public class UI {
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public boolean byeDuke(String input) {
-        if (input.length()==3 && input.equals("bye")) {
-            printDuke("Bye. Hope to see you again soon!");
-            scanner.close();
-            return true;
-        }
-        return false;
+    public void byeDuke() {
+        printDuke("Bye. Hope to see you again soon!");
+        scanner.close();
     }
 }

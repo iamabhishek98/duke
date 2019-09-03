@@ -1,6 +1,6 @@
-
 public class Duke {
-    private TaskList listOfTasks;
+    private static final String filePath = "src/main/data/duke.txt";
+    private TaskList tasks;
     private UI ui;
     private Storage storage;
     private Parser parser;
@@ -8,26 +8,26 @@ public class Duke {
     public Duke(String filePath) {
         ui = new UI();
         storage = new Storage(filePath);
-        listOfTasks = storage.load();
+        tasks = storage.load();
         parser = new Parser();
     }
 
     public void runDuke() {
         ui.welcomeDuke();
-        while (true) {
-            String fullCommand = ui.readCommand();
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                if (ui.byeDuke(fullCommand)) break;
-                parser.parseInput(fullCommand, listOfTasks);
+                String fullCommand = ui.readCommand();
+                Command command = parser.parseInput(fullCommand);
+                command.execute(tasks,ui,storage);
+                isExit = command.isExit();
             } catch(DukeException e) {
                 ui.printDuke(e.getMessage());
             }
-            storage.update(listOfTasks);
         }
-        storage.update(listOfTasks);
     }
 
     public static void main(String[] args) {
-        new Duke("src/main/data/duke.txt").runDuke();
+        new Duke(filePath).runDuke();
     }
 }

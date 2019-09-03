@@ -21,13 +21,13 @@ public class Storage {
                 String[] line = scanner.nextLine().split(" \\| ");
                 boolean status = (Integer.parseInt(line[1])==1);
                 if (line[0].equals("T")) {
-                    taskList.markToDo(line[2],status);
+                    taskList.addToDo(line[2],status);
                 }
                 else if (line[0].equals("D")) {
-                    taskList.markDeadline(line[2],status,line[3]);
+                    taskList.addDeadline(line[2],status,line[3]);
                 }
                 else if (line[0].equals("E")) {
-                    taskList.markEvent(line[2],status,line[3]);
+                    taskList.addEvent(line[2],status,line[3]);
                 }
             }
             scanner.close();

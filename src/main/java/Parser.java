@@ -1,20 +1,28 @@
 public class Parser {
-    private static UI ui;
-    private static ErrorMessages errorMessages;
+    private UI ui;
 
     public Parser() {
         ui = new UI();
-        errorMessages = new ErrorMessages();
     }
 
-    public void parseInput(String input, TaskList listOfTasks) throws DukeException {
-        if (input.length() == 4 && input.equals("list")) listOfTasks.printList();
-        else if (input.length() >= 5 && input.substring(0, 5).equals("done ")) listOfTasks.markDone(input);
-        else if (input.length() >= 7 && input.substring(0, 7).equals("delete ")) listOfTasks.markDelete(input);
-        else if (input.length() >= 5 && input.substring(0, 5).equals("todo ")) listOfTasks.markToDo(input);
-        else if (input.length() >= 9 && input.substring(0, 9).equals("deadline ")) listOfTasks.markDeadline(input);
-        else if (input.length() >= 6 && input.substring(0, 6).equals("event ")) listOfTasks.markEvent(input);
-        else if (input.length() >= 5 && input.substring(0, 5).equals("find ")) listOfTasks.printMatchingTasks(input);
-        else ui.printDuke(errorMessages.notRecognized());
+    public Command parseInput(String input) throws DukeException {
+        if (input.length()==3 && input.equals("bye"))
+            return new ExitCommand(input);
+        else if (input.length() == 4 && input.equals("list"))
+            return new ListCommand(input);
+        else if (input.length() >= 5 && input.substring(0, 5).equals("done "))
+            return new DoneCommand(input);
+        else if (input.length() >= 7 && input.substring(0, 7).equals("delete "))
+            return new DeleteCommand(input);
+        else if (input.length() >= 5 && input.substring(0, 5).equals("todo "))
+            return new ToDoCommand(input);
+        else if (input.length() >= 9 && input.substring(0, 9).equals("deadline "))
+            return new DeadlineCommand(input);
+        else if (input.length() >= 6 && input.substring(0, 6).equals("event "))
+            return new EventCommand(input);
+        else if (input.length() >= 5 && input.substring(0, 5).equals("find "))
+            return new FindCommand(input);
+        else
+            throw new DukeException(ui.errorMessages.notRecognized());
     }
 }
