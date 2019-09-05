@@ -1,5 +1,29 @@
 list
 todo cs assignment
 list
+deadline   /by /by /by 23/12/2001 1900
+deadline hello world /by 31/02/2018 2200
+deadline hello world /by 31/01/2018 2200
+done a
+list
+done 1
 hello
+delete a 
+delete 1
+event   /at /at /at 23/12/2001 1900
+event hello world /by 31/01/2018 2200
+event hello world /at 31/01/2018 2200-2159
+event hello world /at 31/01/2018 2200-2259
+list
+done 2
+done 3
+find hello
+find hell
+find hello world
+list
+delete 1
+delete 5
+delete 1
+delete 1
+delete a b
 bye

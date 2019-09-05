@@ -28,7 +28,7 @@ public class EventCommand extends Command {
                 tasks.add(x);
                 tasks.acknowledgment();
             }
-        } catch (StringIndexOutOfBoundsException e) {
+        } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
             throw new DukeException(ui.errorMessages.taskWrongFormat("event"));
         }
 

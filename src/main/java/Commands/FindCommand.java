@@ -19,12 +19,15 @@ public class FindCommand extends Command {
         if (newInput.trim().isEmpty()) throw new DukeException(ui.errorMessages.taskDescriptionEmpty("find"));
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
-            String[] descriptions = tasks.get(i).description.split(" ");
-            for (int j = 0; j < descriptions.length; j++) {
-                if (newInput.equals(descriptions[j])) {
-                    matchingTasks.add(tasks.get(i)); break;
-                }
-            }
+            String description = tasks.get(i).description;
+            if (newInput.length() > description.length()) continue;
+            if (description.contains(newInput)) matchingTasks.add(tasks.get(i));
+//            String[] descriptions = tasks.get(i).description.split(" ");
+//            for (int j = 0; j < descriptions.length; j++) {
+//                if (newInput.equals(descriptions[j])) {
+//                    matchingTasks.add(tasks.get(i)); break;
+//                }
+//            }
         }
         if (matchingTasks.isEmpty()) {
             ui.printDuke("There are no matching tasks in the list."); return;
