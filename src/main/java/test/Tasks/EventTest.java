@@ -12,7 +12,10 @@ public class EventTest {
         Event userEvent = new Event("return book", "31/05/2020 1756-2359");
         assertEquals(userEvent.getItem(), "[E][✘] return book (at: 31st of May 2020, 5:56pm-11:59pm)");
 
-        Event storageEvent = new Event("return book", true,"31st of May 2020, 5:56pm-11:59pm");
-        assertEquals(storageEvent.getItem(), "[E][✓] return book (at: 31st of May 2020, 5:56pm-11:59pm)");
+        Event storageEvent = new Event("return book", false,"31st of May 2020, 5:56pm-11:59pm");
+        assertEquals(storageEvent.getItem(), "[E][✘] return book (at: 31st of May 2020, 5:56pm-11:59pm)");
+
+        Event storageEventDone = new Event("return book", true,"31st of May 2020, 5:56pm-11:59pm");
+        assertEquals(storageEventDone.getItem(), "[E][✓] return book (at: 31st of May 2020, 5:56pm-11:59pm)");
     }
 }

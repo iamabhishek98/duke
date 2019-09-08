@@ -12,7 +12,10 @@ public class ToDoTest {
         ToDo userToDo = new ToDo("return book");
         assertEquals(userToDo.getItem(), "[T][✘] return book");
 
-        ToDo storageToDo = new ToDo("return book", true);
-        assertEquals(storageToDo.getItem(), "[T][✓] return book");
+        ToDo storageToDo = new ToDo("return book", false);
+        assertEquals(storageToDo.getItem(), "[T][✘] return book");
+
+        ToDo storageToDoDone = new ToDo("return book", true);
+        assertEquals(storageToDoDone.getItem(), "[T][✓] return book");
     }
 }
