@@ -1,4 +1,4 @@
-package Tasks;
+package main.Tasks;
 
 public class DateAndTime {
     private String Day;
@@ -85,12 +85,12 @@ public class DateAndTime {
     }
 
     /**
-     * Getter function for date and time in the Duke format.
+     * Getter function for date and time in the main.main.DukeOperations format.
      * e.g. for deadline, '2nd of December 2019, 6pm'
      * e.g. for event, '2nd of December 2019, 6pm-7pm'
      *
      * @param eventType indicates whether the task is a 'deadline' or an 'event'
-     * @return the string of the date in the Duke format
+     * @return the string of the date in the main.main.DukeOperations format
      */
     public String getDateAndTime(int eventType) {
         if (eventType == 0) return this.Day+" of "+this.Month+" "+this.Year+", "+this.Time;
@@ -157,7 +157,7 @@ public class DateAndTime {
      * Setter function for the day
      *
      * @param date string containing the date
-     * @return the string containing the day in the Duke format
+     * @return the string containing the day in the main.main.DukeOperations format
      */
     private String setDay(String date) {
         int count = Integer.parseInt(date.split("/")[0]);
@@ -174,7 +174,7 @@ public class DateAndTime {
      * Setter function for the month
      *
      * @param date string containing the date
-     * @return the string containing the month in the Duke format
+     * @return the string containing the month in the main.main.DukeOperations format
      */
     private String setMonth(String date) {
         int count = Integer.parseInt(date.split("/")[1]);
@@ -198,7 +198,7 @@ public class DateAndTime {
      * Setter function for the year
      *
      * @param date string containing the date
-     * @return the string containing the year in the Duke format
+     * @return the string containing the year in the main.main.DukeOperations format
      */
     private String setYear(String date) {
         return date.split("/")[2];
@@ -208,7 +208,7 @@ public class DateAndTime {
      * Setter function for the time
      *
      * @param time string containing the time in the 24 hr format
-     * @return string containing the time in the Duke format
+     * @return string containing the time in the main.main.DukeOperations format
      */
     private String setTime(String time) {
         int hours = Integer.parseInt(time.substring(0,2));

@@ -1,6 +1,6 @@
-package Tasks;
+package main.Tasks;
 
-import Duke.UI;
+import main.DukeOperations.UI;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -95,7 +95,7 @@ public class TaskList {
     /**
      * Appends all the tasks in the ArrayList to a string and returns it
      *
-     * @return appended string containing task list in Duke Format
+     * @return appended string containing task list in main.main.DukeOperations Format
      */
     public StringBuilder writeListToFile() {
         StringBuilder output = new StringBuilder();

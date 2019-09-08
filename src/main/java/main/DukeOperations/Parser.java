@@ -1,7 +1,7 @@
-package Duke;
+package main.DukeOperations;
 
-import Commands.*;
-import ErrorHandling.DukeException;
+import main.Commands.*;
+import main.ErrorHandling.DukeException;
 
 public class Parser {
     private UI ui;

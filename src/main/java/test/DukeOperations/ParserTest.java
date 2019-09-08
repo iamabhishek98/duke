@@ -1,7 +1,8 @@
-package Duke;
+package test.DukeOperations;
 
-import Commands.*;
-import ErrorHandling.DukeException;
+import main.Commands.*;
+import main.DukeOperations.Parser;
+import main.ErrorHandling.DukeException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

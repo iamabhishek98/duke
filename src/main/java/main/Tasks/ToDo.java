@@ -1,4 +1,4 @@
-package Tasks;
+package main.Tasks;
 
 public class ToDo extends Task {
     /**
@@ -23,7 +23,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Returns the string containing the task description in the Duke format
+     * Returns the string containing the task description in the main.main.DukeOperations format
      *
      * @return string in the specific format
      */

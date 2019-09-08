@@ -1,4 +1,4 @@
-package ErrorHandling;
+package main.ErrorHandling;
 
 public class DukeException extends Exception{
     /**

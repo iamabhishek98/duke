@@ -1,6 +1,6 @@
-package Duke;
+package main.DukeOperations;
 
-import ErrorHandling.ErrorMessages;
+import main.ErrorHandling.ErrorMessages;
 
 import java.util.Scanner;
 
@@ -28,7 +28,7 @@ public class UI {
                 +tab+ "| |_| | |_| |   <  __/\n"
                 +tab+"|____/ \\__,_|_|\\_\\___|\n";
         System.out.print(logo);
-        printDuke("Hello! I'm Duke\n\t What can I do for you?");
+        printDuke("Hello! I'm main.main.DukeOperations\n\t What can I do for you?");
     }
 
     /**
@@ -41,7 +41,7 @@ public class UI {
     }
 
     /**
-     * Prints the input string in the format specific to Duke
+     * Prints the input string in the format specific to main.main.DukeOperations
      *
      * @param output contains the string to be printed
      */

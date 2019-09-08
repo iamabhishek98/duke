@@ -1,9 +1,9 @@
-package Commands;
+package main.Commands;
 
-import Duke.Storage;
-import Tasks.TaskList;
-import Duke.UI;
-import ErrorHandling.DukeException;
+import main.DukeOperations.Storage;
+import main.Tasks.TaskList;
+import main.DukeOperations.UI;
+import main.ErrorHandling.DukeException;
 
 public class DoneCommand extends Command {
     /**

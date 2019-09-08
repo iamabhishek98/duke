@@ -1,5 +1,6 @@
-package Tasks;
+package test.Tasks;
 
+import main.Tasks.Deadline;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

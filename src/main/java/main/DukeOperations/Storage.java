@@ -1,7 +1,7 @@
-package Duke;
+package main.DukeOperations;
 
-import ErrorHandling.ErrorMessages;
-import Tasks.TaskList;
+import main.ErrorHandling.ErrorMessages;
+import main.Tasks.TaskList;
 
 import java.io.File;
 import java.io.PrintWriter;

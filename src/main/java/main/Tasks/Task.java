@@ -1,4 +1,4 @@
-package Tasks;
+package main.Tasks;
 
 public class Task {
     public String description;
@@ -40,7 +40,7 @@ public class Task {
     }
 
     /**
-     * Returns the task description in the Duke format
+     * Returns the task description in the main.main.DukeOperations format
      *
      * @return the string in the specific format
      */

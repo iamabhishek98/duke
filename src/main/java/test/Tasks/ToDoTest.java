@@ -1,5 +1,6 @@
-package Tasks;
+package test.Tasks;
 
+import main.Tasks.ToDo;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;

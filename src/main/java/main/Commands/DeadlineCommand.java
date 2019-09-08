@@ -1,11 +1,11 @@
-package Commands;
+package main.Commands;
 
-import Duke.Storage;
-import Tasks.Task;
-import Tasks.TaskList;
-import Duke.UI;
-import ErrorHandling.DukeException;
-import Tasks.Deadline;
+import main.DukeOperations.Storage;
+import main.Tasks.Task;
+import main.Tasks.TaskList;
+import main.DukeOperations.UI;
+import main.ErrorHandling.DukeException;
+import main.Tasks.Deadline;
 
 public class DeadlineCommand extends Command {
     /**

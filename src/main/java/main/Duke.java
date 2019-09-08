@@ -1,7 +1,11 @@
-import Commands.Command;
-import Duke.*;
-import ErrorHandling.DukeException;
-import Tasks.TaskList;
+package main;
+
+import main.Commands.Command;
+import main.DukeOperations.UI;
+import main.DukeOperations.Storage;
+import main.DukeOperations.Parser;
+import main.ErrorHandling.DukeException;
+import main.Tasks.TaskList;
 
 public class Duke {
     private static final String filePath = "src/main/data/duke.txt";
@@ -23,7 +27,7 @@ public class Duke {
     }
 
     /**
-     * Runs the Duke program
+     * Runs the main.main.DukeOperations program
      */
     public void runDuke() {
         this.ui.welcomeDuke();
