@@ -9,6 +9,13 @@ public class ListCommand extends Command {
         super(input);
     }
 
+    /**
+     * Displays the list of tasks
+     *
+     * @param tasks object containing the task list
+     * @param ui object which deals with interactions with the user
+     * @param storage object which deals with loading tasks from the file and saving tasks in the file
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) {
         if (tasks.isEmpty()) {

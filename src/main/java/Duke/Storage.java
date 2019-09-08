@@ -12,12 +12,23 @@ public class Storage {
     protected TaskList taskList;
     protected ErrorMessages errorMessages;
 
+    /**
+     * Constructor to update the filepath variable and instantiate the
+     * taskList and errorMessages objects
+     *
+     * @param filePath
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
-        taskList = new TaskList();
-        errorMessages = new ErrorMessages();
+        this.taskList = new TaskList();
+        this.errorMessages = new ErrorMessages();
     }
 
+    /**
+     * Reads the task list stored in the data file and updates the task list object
+     *
+     * @return object containing the task list
+     */
     public TaskList load() {
         File file = new File(filePath);
         try {
@@ -42,6 +53,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Writes the contents of the task list to the data file
+     *
+     * @param taskList object containing the task list
+     */
     public void update(TaskList taskList) {
         try {
             PrintWriter writer = new PrintWriter(filePath);

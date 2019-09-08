@@ -6,13 +6,26 @@ import Duke.UI;
 import ErrorHandling.DukeException;
 
 public class DoneCommand extends Command {
-    public DoneCommand(String input) {
-        super(input);
+    /**
+     * Construction to initialize the variables of the parent class
+     *
+     * @param description task description
+     */
+    public DoneCommand(String description) {
+        super(description);
     }
 
+    /**
+     * Checks whether the format of the done command is correct, and if it is, marks the task as done
+     *
+     * @param tasks object containing the task list
+     * @param ui object which deals with interactions with the user
+     * @param storage object which deals with loading tasks from the file and saving tasks in the file
+     * @throws DukeException exception thrown when the task description entered by the user is invalid
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
-        String[] newInput = input.split(" ");
+        String[] newInput = super.description.split(" ");
         if(newInput.length == 1) throw new DukeException(ui.errorMessages.taskDescriptionEmpty("done"));
         try {
             int i = Integer.parseInt(newInput[1]);

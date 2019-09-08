@@ -6,13 +6,27 @@ import Duke.UI;
 import ErrorHandling.DukeException;
 
 public class DeleteCommand extends Command {
-    public DeleteCommand(String input) {
-        super(input);
+    /**
+     * Construction to initialize the variables of the parent class
+     *
+     * @param description task description
+     */
+    public DeleteCommand(String description) {
+        super(description);
     }
 
+    /**
+     * Checks whether the format of the delete command is correct, and if it is, deletes the task using its index
+     * from the task list
+     *
+     * @param tasks object containing the task list
+     * @param ui object which deals with interactions with the user
+     * @param storage object which deals with loading tasks from the file and saving tasks in the file
+     * @throws DukeException exception thrown when the task description entered by the user is invalid
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
-        String[] newInput = input.split(" ");
+        String[] newInput = super.description.split(" ");
         if(newInput.length == 1) throw new DukeException(ui.errorMessages.taskDescriptionEmpty("delete"));
         try {
             int i = Integer.parseInt(newInput[1]);

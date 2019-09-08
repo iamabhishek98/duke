@@ -9,11 +9,17 @@ public class UI {
     public Scanner scanner;
     public ErrorMessages errorMessages;
 
+    /**
+     * Constructor to instantiate the scanner and errorMessages objects
+     */
     public UI() {
-        scanner = new Scanner(System.in);
-        errorMessages = new ErrorMessages();
+        this.scanner = new Scanner(System.in);
+        this.errorMessages = new ErrorMessages();
     }
 
+    /**
+     * Prints welcome message
+     */
     public void welcomeDuke() {
         String tab = "\t ";
         String logo = tab+" ____        _        \n"
@@ -25,18 +31,31 @@ public class UI {
         printDuke("Hello! I'm Duke\n\t What can I do for you?");
     }
 
+    /**
+     * Reads the command from the user
+     *
+     * @return the string entered by the user
+     */
     public String readCommand() {
-        return scanner.nextLine();
+        return this.scanner.nextLine();
     }
 
-    public void printDuke(String input) {
+    /**
+     * Prints the input string in the format specific to Duke
+     *
+     * @param output contains the string to be printed
+     */
+    public void printDuke(String output) {
         System.out.println(HORIZONTAL_LINE);
-        System.out.println("\t "+input);
+        System.out.println("\t "+output);
         System.out.println(HORIZONTAL_LINE);
     }
 
+    /**
+     * Prints the exit message and closes the scanner object
+     */
     public void byeDuke() {
         printDuke("Bye. Hope to see you again soon!");
-        scanner.close();
+        this.scanner.close();
     }
 }

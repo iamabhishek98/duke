@@ -9,13 +9,27 @@ import ErrorHandling.DukeException;
 import java.util.ArrayList;
 
 public class FindCommand extends Command {
-    public FindCommand(String input) {
-        super(input);
+    /**
+     * Construction to initialize the variables of the parent class
+     *
+     * @param description task description
+     */
+    public FindCommand(String description) {
+        super(description);
     }
 
+    /**
+     * Checks whether the format of the find command is correct, and if it is, returns the matching tasks
+     * to the keyword(s) entered by the user
+     *
+     * @param tasks object containing the task list
+     * @param ui object which deals with interactions with the user
+     * @param storage object which deals with loading tasks from the file and saving tasks in the file
+     * @throws DukeException exception thrown when the task description entered by the user is invalid
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
-        String newInput = input.substring(5);
+        String newInput = super.description.substring(5);
         if (newInput.trim().isEmpty()) throw new DukeException(ui.errorMessages.taskDescriptionEmpty("find"));
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {

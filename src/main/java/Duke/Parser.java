@@ -6,10 +6,21 @@ import ErrorHandling.DukeException;
 public class Parser {
     private UI ui;
 
+    /**
+     * Constructor to create new instance of UI object
+     */
     public Parser() {
         ui = new UI();
     }
 
+    /**
+     * Checks the command entered by the user and if valid, returns a command object
+     * corresponding to it
+     *
+     * @param input the command entered by the user
+     * @return Command object
+     * @throws DukeException exception thrown when the command entered by the user is invalid
+     */
     public Command parseInput(String input) throws DukeException {
         if (input.length()==3 && input.equals("bye"))
             return new ExitCommand(input);
