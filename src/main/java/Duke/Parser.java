@@ -39,6 +39,6 @@ public class Parser {
         else if (input.length() >= 5 && input.substring(0, 5).equals("find "))
             return new FindCommand(input);
         else
-            throw new DukeException(ui.errorMessages.notRecognized());
+            throw new DukeException(this.ui.errorMessages.notRecognized());
     }
 }
